@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <title>Walmart Home</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <section class="top-nav">
+        <div class="user-greeting">
+          <h1>Hi, <span>Jane</span></h1>
+        </div>
+        <div class="store-title">
+          <h2>Walmart</h2>
+        </div>
+        <div class="cart">
+          <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
+        </div>
+      </section>
+
+      <section class="search-bar">
+        <div class="search-input">
+          <input type="text" placeholder="&#128269;    Search everything at Walmart">
+          <i class="fa-solid fa-barcode"></i>
+        </div>
+        <div class="location">
+          <p>How do you want your items? | <span class="postal-code">L4Y 1N6</span></p>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+      </section>
+    </nav>
+  </header>
+
+  <main>
+    <section class="pickup-delivery">
+      <p>Pickup and delivery</p>
+      <button class="see-times">See times</button>
+    </section>
+
+    <section class="advertisement">
+      <p>Advertisement Carousel</p>
+    </section>
+
+    <section class="categories">
+      <div class="category-item">Grocery</div>
+      <div class="category-item">Weekly Flyer</div>
+      <div class="category-item">Coupon Centre</div>
+      <div class="category-item">Made in Canada</div>
+      <div class="category-item">Walmart Brands</div>
+      <div class="category-item">Clearance</div>
+    </section>
+
+    <section class="groceries">
+      <h3>Groceries <span class="item-count">(12.3k)</span></h3>
+      <div class="products">
+        <div class="product">
+          <img src="./assets/orange.png" alt="Oranges">
+          <div class="product-name">
+            <p class="wonder">Wonder</p>
+            <p class="">Oranges</p>
+          </div>
+          <div class="price-container">
+            <div class="price-col">
+              <p class="price">$2.39</p>
+              <p class="price-per-unit">11.9¢/oz</p>
+            </div>
+            <div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="product">
+          <img src="./assets/kiwi.png" alt="Kiwi">
+          <div class="product-name">
+            <p class="wonder">Wonder</p>
+            <p>Kiwi</p>
+          </div>
+          <div class="price-container">
+            <div class="price-col">
+              <p class="price">$3.19</p>
+              <p class="price-per-unit">11.9¢/oz</p>
+            </div>
+            <div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-nav">
+    <div>
+      <a href="#"><i class="fa-solid fa-house"></i></a>
+      <p>Home</p>
+    </div>
+    <div>
+      <a href="#"><i class="fa-solid fa-shapes"></i></a>
+      <p>Categories</p>
+    </div>
+    <div>
+      <a href="#"><i class="fa-solid fa-piggy-bank"></i></a>
+      <p>My Points</p>
+    </div>
+    <div>
+      <a href="#"><i class="fa-solid fa-heart"></i></a>
+      <p>My List</p>
+    </div>
+    <div>
+      <a href="#"><i class="fa-solid fa-user"></i></a>
+      <p>Profile</p>
+    </div>
+  </footer>
+</body>
+</html>
