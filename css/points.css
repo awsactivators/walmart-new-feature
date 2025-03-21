@@ -1,0 +1,175 @@
+/* Mobile Styles (max-width: 600px) */
+@media (max-width: 600px) {
+
+  /* General Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f8f8;
+    max-width: 600px;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  main {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 60px;
+  }
+
+  /* Header */
+  header {
+    background-color: #0B59D5;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .top-nav h1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .location-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 0 15px;
+  }
+
+  .postal-code {
+    font-weight: bold;
+  }
+
+  /* Points Balance */
+  .points-balance {
+    background: white;
+    text-align: center;
+    /* padding: 20px; */
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .points-balance h2 {
+    font-size: 40px;
+  }
+
+  /* Membership Section */
+  .membership {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .membership-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .membership-row:last-child {
+    border-bottom: none;
+  }
+
+  .membership a {
+    color: #0B59D5;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  /* Offers & Ways to Earn */
+  .offers, .ways-to-earn {
+    padding: 10px;
+  }
+
+  .offers h3, .ways-to-earn h3 {
+    font-weight: bold;
+    padding: 10px 10px 20px 10px;
+  }
+
+  .offer-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+
+  .offer-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .offer-title {
+    color: #0B59D5;
+    padding-bottom: 8px;
+  }
+
+  .offer-detail {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .blue-btn {
+    background: #0B59D5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    /* width: 100%; */
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    border-top: 2px solid #ddd;
+  }
+
+  .bottom-nav i {
+    color: black;
+    width: 20px;
+  }
+
+  .bottom-nav div {
+    text-align: center;
+  }
+
+  .bottom-nav p {
+    font-size: 12px;
+  }
+}
