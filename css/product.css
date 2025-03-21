@@ -1,0 +1,240 @@
+/* Apply styles only for mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+  
+  /* General styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f8f8;
+    width: 100%;
+    max-width: 600px;
+    overflow-x: hidden;  
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  header {
+    background-color: #0B59D5;
+    color: white;
+    padding: 10px;
+    padding-top: 20px;
+  }
+
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+  }
+
+  .cart {
+    position: relative;
+  }
+
+  .cart-count {
+    background-color: #FCB61A;
+    color: black;
+    font-weight: bold;
+    padding: 1px 4px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+
+  .search-bar {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .search-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: white;
+  }
+
+  .search-input input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .search-input i {
+    color: #999;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  .location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  main {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  /* Points Banner */
+  .points-banner {
+    background: #eaf2ff;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Product Image */
+  .product-image img {
+    width: 80%;
+    max-width: 300px;
+    /* height: 300px; */
+    display: block;
+    margin: 20px auto;
+    object-fit: contain;
+  }
+
+  /* Product Info */
+  .product-info {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .product-name-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    width: 100%;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  /* Star Rating */
+  .rating-container {
+    display: flex;
+    justify-content: start;
+    padding: 10px 15px;
+    width: 100%;
+  }
+
+  .rating {
+    font-size: 18px;
+    color: #ddd;
+    cursor: pointer;
+  }
+
+  .star.checked {
+    color: gold;
+  }
+
+  /* Toggle Buttons */
+  .toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+    background: #eaf2ff;
+    padding: 10px;
+    border-radius: 40px;
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .toggle-btn {
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    background: #eaf2ff;
+    font-size: 16px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+  }
+
+  .toggle-btn.active {
+    background: white;
+    border-radius: 40px;
+  }
+
+  /* Product Details */
+  .product-details {
+    text-align: left;
+    padding: 10px;
+    width: 90%;
+    margin: auto;
+  }
+
+  .details-content {
+    display: none;
+  }
+
+  .details-content.active {
+    display: block;
+  }
+
+  /* Add to Cart */
+  .add-to-cart-btn {
+    background: #0B59D5;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+  }
+
+  /* Bottom Navigation */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    border-top: 2px solid #ddd;
+  }
+
+  .bottom-nav i {
+    color: black;
+    width: 20px;
+  }
+
+  .bottom-nav div {
+    text-align: center;
+  }
+
+  .bottom-nav p {
+    font-size: 12px;
+  }
+}
