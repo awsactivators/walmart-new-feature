@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/index.css">
 
   <title>Walmart Home</title>
 </head>
@@ -50,27 +50,48 @@
       <p>Pickup and delivery</p>
       <button class="see-times">See times</button>
     </section>
-
-    <section class="advertisement">
-      <p>Advertisement Carousel</p>
+  
+    <!-- Grocery Clearance Ad Card -->
+    <section class="clearance-card">
+      <img src="./assets/grocerybag.png" alt="Grocery Clearance">
+      <div class="clearance-details">
+        <div class="clearance-text">
+          <h4>Grocery Clearance</h4>
+          <p>Get Points when you purchase from Grocery Clearance</p>
+        </div>
+        <button class="shop-now">Shop Now</button>
+      </div>
     </section>
-
+  
+    <!-- Categories -->
     <section class="categories">
-      <div class="category-item">Grocery</div>
-      <div class="category-item">Weekly Flyer</div>
-      <div class="category-item">Coupon Centre</div>
-      <div class="category-item">Made in Canada</div>
-      <div class="category-item">Walmart Brands</div>
-      <div class="category-item">Clearance</div>
+      <div class="category-item">
+        <i class="fa-solid fa-cart-shopping"></i> Grocery
+      </div>
+      <div class="category-item">
+        <i class="fa-solid fa-receipt"></i> Weekly Flyer
+      </div>
+      <div class="category-item">
+        <i class="fa-solid fa-ticket"></i> Coupon Centre
+      </div>
+      <div class="category-item">
+        <i class="fa-solid fa-leaf"></i> Made in Canada
+      </div>
+      <div class="category-item">
+        <i class="fa-solid fa-tags"></i> Walmart Brands
+      </div>
+      <div class="category-item selected">
+        <i class="fa-solid fa-percent"></i> Clearance
+      </div>
     </section>
-
+  
+    <!-- Groceries -->
     <section class="groceries">
       <h3>Groceries <span class="item-count">(12.3k)</span></h3>
       <div class="products">
         <div class="product">
           <img src="./assets/orange.png" alt="Oranges">
           <div class="product-name">
-            <p class="wonder">Wonder</p>
             <p class="">Oranges</p>
           </div>
           <div class="price-container">
@@ -86,7 +107,6 @@
         <div class="product">
           <img src="./assets/kiwi.png" alt="Kiwi">
           <div class="product-name">
-            <p class="wonder">Wonder</p>
             <p>Kiwi</p>
           </div>
           <div class="price-container">
@@ -102,6 +122,7 @@
       </div>
     </section>
   </main>
+  
 
   <footer class="bottom-nav">
     <div>
@@ -113,15 +134,15 @@
       <p>Categories</p>
     </div>
     <div>
-      <a href="#"><i class="fa-solid fa-piggy-bank"></i></a>
+      <a href="./points.html"><i class="fa-solid fa-piggy-bank"></i></a>
       <p>My Points</p>
     </div>
     <div>
-      <a href="#"><i class="fa-solid fa-heart"></i></a>
-      <p>My List</p>
+      <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+      <p>Cart</p>
     </div>
     <div>
-      <a href="#"><i class="fa-solid fa-user"></i></a>
+      <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
       <p>Profile</p>
     </div>
   </footer>
