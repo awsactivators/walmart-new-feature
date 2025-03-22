@@ -38,9 +38,9 @@
   }
 
   .search-bar {
-    padding: 10px;
+    padding: 0 10px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 0 10px;
   }
 
   .search-input {
@@ -74,6 +74,12 @@
     padding: 5px;
   }
 
+
+  /* Main */
+  main {
+    padding-bottom: 70px;
+  }
+
   /* Pickup and Delivery */
   .pickup-delivery {
     display: flex;
@@ -85,11 +91,12 @@
 
   .see-times {
     background: white;
-    border: 1px solid black;
+    border: 1px solid #0B59D5;
     padding: 0 10px;
     border-radius: 20px;
     cursor: pointer;
     height: 40px;
+    color: #0B59D5;
   }
 
   .advertisement {
@@ -99,7 +106,52 @@
     justify-content: center;
   }
 
-  /* Categories */
+  
+  /* Grocery Clearance Card */
+  .clearance-card {
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .clearance-card img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .clearance-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .clearance-text h4 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .clearance-text p {
+    font-size: 14px;
+    color: #444;
+  }
+
+  .shop-now {
+    background: white;
+    border: 1px solid #0B59D5;
+    color: #0B59D5;
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+    width: 100px;
+  }
+
+  /* Category Grid Updates */
   .categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -110,19 +162,32 @@
 
   .category-item {
     display: flex;
-    border: 1px solid #ddd;
-    padding: 15px;
+    flex-direction: column;
+    font-size: 12px;
     font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 70px;
     justify-content: center;
     align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f7f7f7;
+    cursor: pointer;
+    color: #333;
+    border: 1px solid #ddd;
+    text-align: center;
+    height: 75px;
   }
 
-  .item-count {
-    color: #999;
+  .category-item i {
+    font-size: 18px;
+    margin-bottom: 6px;
   }
+
+  .category-item.selected {
+    background: #eaf2ff;
+    color: #0B59D5;
+  }
+
+
 
   /* Groceries */
   .groceries {
@@ -180,6 +245,11 @@
     color: gray;
   }
 
+  .item-count {
+    font-weight: lighter;
+    color: #999;
+  }
+
   .add-to-cart {
     background: #0B59D5;
     color: white;
@@ -189,6 +259,7 @@
     font-size: 18px;
     cursor: pointer;
   }
+
 
   /* Bottom Navigation */
   .bottom-nav {
@@ -201,6 +272,7 @@
     width: 100%;
     background: white;
     border-top: 2px solid #ddd;
+    height: auto;
   }
 
   .bottom-nav i {

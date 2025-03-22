@@ -1,0 +1,79 @@
+@media (max-width: 600px) {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  /* Main */
+  .success-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .success-img {
+    width: 160px;
+    height: auto;
+    margin: 0 auto 25px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .success-message {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .success-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .home-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #0B59D5;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  .home-btn a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .view-points-link {
+    font-size: 14px;
+    color: #333;
+    text-decoration: underline;
+    display: inline-block;
+  }
+}

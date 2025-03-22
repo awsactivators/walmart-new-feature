@@ -36,11 +36,24 @@
     text-align: center;
   }
 
+  .top-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .top-nav a {
+    height: 24px;
+  }
+
   .top-nav h1{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    /* padding: 15px; */
   }
 
   .location-bar {
@@ -59,7 +72,6 @@
   .points-balance {
     background: white;
     text-align: center;
-    /* padding: 20px; */
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -84,11 +96,6 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .membership-row:last-child {
-    border-bottom: none;
   }
 
   .membership a {
@@ -139,7 +146,6 @@
     border: none;
     padding: 10px 15px;
     font-size: 14px;
-    /* width: 100%; */
     border-radius: 25px;
     cursor: pointer;
     margin-top: 10px;
