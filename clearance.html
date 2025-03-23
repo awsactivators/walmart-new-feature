@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clearance Store | Walmart</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/clearance.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+          <section class="top-nav">
+            <div class="user-greeting">
+              <h1>Hi, <span>Jane</span></h1>
+            </div>
+            <div class="store-title">
+              <h2>Walmart</h2>
+            </div>
+            <div class="cart">
+              <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
+            </div>
+          </section>
+    
+          <section class="search-bar">
+            <div class="search-input">
+              <input type="text" placeholder="&#128269;    Search everything at Walmart">
+              <i class="fa-solid fa-barcode"></i>
+            </div>
+            <div class="location">
+              <p>How do you want your items? | <span class="postal-code">L4Y 1N6</span></p>
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
+          </section>
+        </nav>
+      </header>
+    
+
+    <!-- Clearance Store Section -->
+    <main>
+        <section class="category-toggle">
+            <div class="toggle-container">
+                <div class="toggle-background"></div>
+                <button class="toggle-btn active">Grocery</button>
+                <button class="toggle-btn">Others</button>
+            </div>
+        </section>
+
+        <!-- Filter Buttons -->
+        <section class="filter-buttons">
+            <button class="filter-btn">
+                <i class="fa-solid fa-sliders"></i> Sort & Filter <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <button class="filter-btn">
+                In-Store <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <button class="filter-btn">
+                Price <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </section>
+
+
+        <!-- Product Grid -->
+        <section class="product-grid">
+            <div class="product-card">
+                <div class="points-tag">
+                    <i class="fa-solid fa-circle"></i> 250
+                </div>
+                <img src="./assets/orange.png" alt="Oranges">
+                <p class="product-name"><a href="product-detail.html" style="text-decoration: none;">Oranges</a></p>
+                <div class="price-container">
+                    <div>
+                        <p class="price">$2.39</p>
+                        <p class="price-per-unit">11.9 ¢/oz</p>
+                    </div>
+                    <button class="add-to-cart"><a href="cart.html" style="text-decoration: none;color: #ffffff;"><i class="fa-solid fa-plus"></i></a></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="points-tag">
+                    <i class="fa-solid fa-circle"></i> 300
+                </div>
+                <img src="./assets/kiwi.png" alt="Oranges">
+                <p class="product-name"><a href="product-detail.html" style="text-decoration: none;">Kiwi</a></p>
+                <div class="price-container">
+                    <div>
+                        <p class="price">$3.19</p>
+                        <p class="price-per-unit">11.9 ¢/oz</p>
+                    </div>
+                    <button class="add-to-cart"><a href="cart.html" style="text-decoration: none;color: #ffffff;"><i class="fa-solid fa-plus"></i></a></i></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="points-tag">
+                    <i class="fa-solid fa-circle"></i> 250
+                </div>
+                <img src="./assets/orange.png" alt="Oranges">
+                <p class="product-name"><a href="product-detail.html" style="text-decoration: none;">Oranges</a></p>
+                <div class="price-container">
+                    <div>
+                        <p class="price">$2.39</p>
+                        <p class="price-per-unit">11.9 ¢/oz</p>
+                    </div>
+                    <button class="add-to-cart"><a href="cart.html" style="text-decoration: none;color: #ffffff;"><i class="fa-solid fa-plus"></i></a></button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="points-tag">
+                    <i class="fa-solid fa-circle"></i> 300
+                </div>
+                <img src="./assets/kiwi.png" alt="Oranges">
+                <p class="product-name"><a href="product-detail.html" style="text-decoration: none;">Kiwi</a></p>
+                <div class="price-container">
+                    <div>
+                        <p class="price">$3.19</p>
+                        <p class="price-per-unit">11.9 ¢/oz</p>
+                    </div>
+                    <button class="add-to-cart"><a href="cart.html" style="text-decoration: none;color: #ffffff;"><i class="fa-solid fa-plus"></i></a></button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Reused from index.html) -->
+    <footer class="bottom-nav">
+        <div>
+            <a href="#"><i class="fa-solid fa-house"></i></a>
+            <p>Home</p>
+        </div>
+        <div>
+            <a href="#"><i class="fa-solid fa-shapes"></i></a>
+            <p>Categories</p>
+        </div>
+        <div>
+            <a href="#"><i class="fa-solid fa-piggy-bank"></i></a>
+            <p>My Points</p>
+        </div>
+        <div>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            <p>Cart</p>
+        </div>
+        <div>
+            <a href="#"><i class="fa-solid fa-user"></i></a>
+            <p>Profile</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.toggle-btn').forEach((btn, index) => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                let toggleBg = document.querySelector('.toggle-background');
+                toggleBg.style.left = index === 0 ? "5px" : "49%"; // Moves white capsule
+            });
+        });
+    </script>
+</body>
+</html>

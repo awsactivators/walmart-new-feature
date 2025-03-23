@@ -1,0 +1,185 @@
+/* Login Page Styling */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-header {
+    margin-bottom: 20px;
+}
+
+.login-header .logo {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #0B59D5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.login-button {
+    background-color: #0B59D5;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.or-divider {
+    margin: 15px 0;
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+}
+
+.or-divider:before,
+.or-divider:after {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 1px;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+}
+
+.or-divider:before {
+    left: 0;
+}
+
+.or-divider:after {
+    right: 0;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.google-login, .facebook-login {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    background: white;
+    cursor: pointer;
+}
+
+.google-login img,
+.facebook-login img {
+    width: 20px;
+}
+.google-icon {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.fa-facebook-f{
+    color: #3b5998;
+    background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+    background-size: 55%;
+    background-position: 70% 0;
+    background-repeat: no-repeat;
+}
+.signup-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.signup-link a {
+    color: #0B59D5;
+    text-decoration: none;
+}
+/* General Form Spacing */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px; 
+}
+
+
+.address-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px; 
+}
+
+.address-col {
+    width: 45%;
+}
+
+
+.form-group input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+.login-button {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+}
