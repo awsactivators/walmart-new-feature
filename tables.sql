@@ -4,7 +4,7 @@ USE walmart_app;
 
 -- Users table
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(20) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 -- Addresses table
 CREATE TABLE addresses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -23,5 +23,5 @@ CREATE TABLE addresses (
     province VARCHAR(100) NOT NULL,
     postal_code VARCHAR(20) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
