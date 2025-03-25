@@ -1,33 +1,39 @@
 <?php
- include('connection.php');
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+  include('loggedin-user.php'); 
+  include('connection.php');
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: signup.php");
-    exit();
-}
+  if (!isset($_SESSION['user_id'])) {
+      header("Location: signup.php");
+      exit();
+  }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
-    $first = $_POST["first-name"];
-    $last = $_POST["last-name"];
-    $street = $_POST["street-address"];
-    $apt = $_POST["apt"];
-    $province = $_POST["province"];
-    $postal = $_POST["postal-code"];
 
-    $stmt = $conn->prepare("INSERT INTO addresses 
-        (user_id, first_name, last_name, street_address, apt_suite, province, postal_code) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssss", $user_id, $first, $last, $street, $apt, $province, $postal);
-    
-    if ($stmt->execute()) {
-        session_destroy(); 
-        header("Location: login.php");
-        exit();
-    } else {
-        $error = "Failed to save address.";
-    }
-}
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $user_id = $_SESSION['user_id'];
+      $first = $_POST["first-name"];
+      $last = $_POST["last-name"];
+      $street = $_POST["street-address"];
+      $apt = $_POST["apt"];
+      $province = $_POST["province"];
+      $postal = $_POST["postal-code"];
+
+      $stmt = $connect->prepare("INSERT INTO addresses 
+          (user_id, first_name, last_name, street_address, apt_suite, province, postal_code) 
+          VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("issssss", $user_id, $first, $last, $street, $apt, $province, $postal);
+      
+      if ($stmt->execute()) {
+          session_destroy(); 
+          header("Location: login.php");
+          exit();
+      } else {
+          $error = "Failed to save address.";
+      }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <img src="assets/logo.png" alt="Walmart Logo" class="logo" />
+        <img src="../assets/logo.png" alt="Walmart Logo" class="logo" />
         <h2>Address</h2>
       </div>
 

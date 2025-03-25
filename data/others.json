@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "name": "Microwave Oven",
+    "price": 89.99,
+    "weight": "20 lbs",
+    "image": "../assets/microwave.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Non-stick Frying Pan",
+    "price": 24.50,
+    "weight": "2.2 lbs",
+    "image": "../assets/frying-pan.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Stainless Steel Pot",
+    "price": 34.00,
+    "weight": "3.5 lbs",
+    "image": "../assets/pot.png"
+  },
+  {
+    "id": 4,
+    "name": "Electric Kettle",
+    "price": 29.99,
+    "weight": "1.8 lbs",
+    "image": "../assets/kettle.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Toaster",
+    "price": 21.75,
+    "weight": "2 lbs",
+    "image": "../assets/toaster.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Blender",
+    "price": 45.00,
+    "weight": "3 lbs",
+    "image": "../assets/blender.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Rice Cooker",
+    "price": 54.99,
+    "weight": "4.2 lbs",
+    "image": "../assets/rice-cooker.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Knife Set",
+    "price": 19.95,
+    "weight": "1.5 lbs",
+    "image": "../assets/knife-set.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Mixing Bowls",
+    "price": 15.50,
+    "weight": "2.3 lbs",
+    "image": "../assets/mixing-bowls.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Cutting Board",
+    "price": 12.99,
+    "weight": "1.2 lbs",
+    "image": "../assets/cutting-board.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Dish Rack",
+    "price": 18.99,
+    "weight": "2.8 lbs",
+    "image": "../assets/dish-rack.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Storage Containers",
+    "price": 22.49,
+    "weight": "2 lbs",
+    "image": "../assets/containers.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Iron",
+    "price": 35.00,
+    "weight": "2.5 lbs",
+    "image": "../assets/iron.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Clothes Hanger Pack",
+    "price": 10.99,
+    "weight": "1.1 lbs",
+    "image": "../assets/hangers.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Desk Lamp",
+    "price": 27.75,
+    "weight": "1.6 lbs",
+    "image": "../assets/lamp.jpg"
+  }
+]

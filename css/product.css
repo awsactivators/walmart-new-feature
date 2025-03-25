@@ -211,6 +211,23 @@
     display: block;
   }
 
+  .back-to-grocery {
+    text-decoration: none;
+    text-align: center;
+    background: #0B59D5;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    
+  }
+
   /* Bottom Navigation */
   .bottom-nav {
     display: flex;

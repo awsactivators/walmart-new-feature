@@ -1,34 +1,39 @@
 <?php
- include('connection.php');
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+  include('loggedin-user.php'); 
+  include('connection.php');
 
-$errors = [];
+  $errors = [];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST["email"]);
-    $password = $_POST["password"];
-    $confirm = $_POST["confirm-password"];
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $email = trim($_POST["email"]);
+      $phone = trim($_POST["phone"]);
+      $password = $_POST["password"];
+      $confirm = $_POST["confirm-password"];
 
-    if ($password !== $confirm) {
-        $errors[] = "Passwords do not match.";
-    }
+      if ($password !== $confirm) {
+          $errors[] = "Passwords do not match.";
+      }
 
-    if (empty($errors)) {
-        // Hash password
-        $hashed = password_hash($password, PASSWORD_DEFAULT);
+      if (empty($errors)) {
+          // Hash password
+          $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert user
-        $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $hashed);
+          // Insert user
+          $stmt = $connect->prepare("INSERT INTO users (`email`, `phone`, `password`) VALUES (?, ?, ?)");
+          $stmt->bind_param("sss", $email, $phone, $hashed);
 
-        if ($stmt->execute()) {
-            $_SESSION['user_id'] = $stmt->insert_id;
-            header("Location: address.php");
-            exit();
-        } else {
-            $errors[] = "Email already exists or error occurred.";
-        }
-    }
-}
+          if ($stmt->execute()) {
+              $_SESSION['user_id'] = $stmt->insert_id;
+              header("Location: address.php");
+              exit();
+          } else {
+              $errors[] = "Email already exists or error occurred.";
+          }
+      }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <img src="assets/logo.png" alt="Walmart Logo" class="logo" />
+        <img src="../assets/logo.png" alt="Walmart Logo" class="logo" />
         <h2>Signup</h2>
       </div>
 
@@ -53,8 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <?php endif; ?>
 
       <form action="signup.php" method="POST">
-        <label for="email">Phone No / Email</label>
+        <label for="email">Email</label>
         <input type="text" name="email" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" required />
 
         <label for="password">Password</label>
         <input type="password" name="password" required />

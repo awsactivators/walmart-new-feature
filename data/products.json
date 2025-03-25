@@ -1,0 +1,215 @@
+[
+  {
+    "id": 1,
+    "name": "Oranges",
+    "price": 2.39,
+    "price_per_unit": "11.9\u00a2/oz",
+    "points": 250,
+    "image": "../assets/orange.jpg",
+    "ingredients": [
+      "Fresh orange slices",
+      "Vitamin C",
+      "Natural sugars",
+      "Fiber"
+    ],
+    "recipe": "Use oranges in smoothies with strawberries and bananas for a vitamin-rich drink."
+  },
+  {
+    "id": 2,
+    "name": "Kiwi",
+    "price": 3.19,
+    "price_per_unit": "12.5\u00a2/oz",
+    "points": 300,
+    "image": "../assets/kiwi.jpg",
+    "ingredients": [
+      "Green kiwi flesh",
+      "Natural enzymes",
+      "High Vitamin K",
+      "Fiber"
+    ],
+    "recipe": "Slice kiwi and mix with blueberries and yogurt for a healthy parfait."
+  },
+  {
+    "id": 3,
+    "name": "Bananas",
+    "price": 1.25,
+    "price_per_unit": "5\u00a2/oz",
+    "points": 150,
+    "image": "../assets/banana.jpg",
+    "ingredients": [
+      "Fresh banana",
+      "Potassium",
+      "Natural sugar"
+    ],
+    "recipe": "Great for smoothies with milk, peanut butter, and cocoa powder."
+  },
+  {
+    "id": 4,
+    "name": "Apples",
+    "price": 2.99,
+    "price_per_unit": "9\u00a2/oz",
+    "points": 200,
+    "image": "../assets/apple.jpg",
+    "ingredients": [
+      "Apple flesh",
+      "Pectin",
+      "Antioxidants"
+    ],
+    "recipe": "Slice apples into salads or serve with almond butter for a snack."
+  },
+  {
+    "id": 5,
+    "name": "Broccoli",
+    "price": 1.75,
+    "price_per_unit": "8.5\u00a2/oz",
+    "points": 180,
+    "image": "../assets/broccoli.jpg",
+    "ingredients": [
+      "Broccoli florets",
+      "Vitamin K",
+      "Iron",
+      "Fiber"
+    ],
+    "recipe": "Steam and serve with lemon, or add to stir-fries with soy sauce and garlic."
+  },
+  {
+    "id": 6,
+    "name": "Carrots",
+    "price": 1.9,
+    "price_per_unit": "6\u00a2/oz",
+    "points": 160,
+    "image": "../assets/carrots.jpg",
+    "ingredients": [
+      "Beta-carotene",
+      "Vitamin A",
+      "Natural sweetness"
+    ],
+    "recipe": "Grate and mix with raisins and mayo for a sweet carrot salad."
+  },
+  {
+    "id": 7,
+    "name": "Tomatoes",
+    "price": 2.5,
+    "price_per_unit": "10\u00a2/oz",
+    "points": 210,
+    "image": "../assets/tomatoes.jpg",
+    "ingredients": [
+      "Lycopene",
+      "Vitamin C",
+      "Tomato flesh"
+    ],
+    "recipe": "Dice tomatoes with basil and mozzarella for a fresh Caprese salad."
+  },
+  {
+    "id": 8,
+    "name": "Lettuce",
+    "price": 1.6,
+    "price_per_unit": "7\u00a2/oz",
+    "points": 140,
+    "image": "../assets/lettuce.jpg",
+    "ingredients": [
+      "Crispy lettuce leaves",
+      "Water",
+      "Vitamin A"
+    ],
+    "recipe": "Chop and combine with cucumbers, tomatoes, and vinaigrette."
+  },
+  {
+    "id": 9,
+    "name": "Cucumbers",
+    "price": 1.8,
+    "price_per_unit": "6.5\u00a2/oz",
+    "points": 155,
+    "image": "../assets/cucumber.jpg",
+    "ingredients": [
+      "Cucumber slices",
+      "Water",
+      "Low calories"
+    ],
+    "recipe": "Add to salads or blend with mint and yogurt for a refreshing dip."
+  },
+  {
+    "id": 10,
+    "name": "Strawberries",
+    "price": 4.29,
+    "price_per_unit": "15\u00a2/oz",
+    "points": 320,
+    "image": "../assets/strawberry.jpg",
+    "ingredients": [
+      "Fresh strawberries",
+      "Vitamin C",
+      "Antioxidants"
+    ],
+    "recipe": "Mix with granola and yogurt or bake into muffins."
+  },
+  {
+    "id": 11,
+    "name": "Blueberries",
+    "price": 3.99,
+    "price_per_unit": "13\u00a2/oz",
+    "points": 310,
+    "image": "../assets/blueberries.jpg",
+    "ingredients": [
+      "Fresh blueberries",
+      "Antioxidants",
+      "Vitamin K"
+    ],
+    "recipe": "Toss into oatmeal or bake into pancakes."
+  },
+  {
+    "id": 12,
+    "name": "Spinach",
+    "price": 2.45,
+    "price_per_unit": "9\u00a2/oz",
+    "points": 200,
+    "image": "../assets/spinach.jpg",
+    "ingredients": [
+      "Fresh spinach leaves",
+      "Iron",
+      "Calcium"
+    ],
+    "recipe": "Use in green smoothies or saut\u00e9 with garlic and olive oil."
+  },
+  {
+    "id": 13,
+    "name": "Grapes",
+    "price": 3.29,
+    "price_per_unit": "11\u00a2/oz",
+    "points": 270,
+    "image": "../assets/grapes.jpg",
+    "ingredients": [
+      "Seedless grapes",
+      "Natural sugars",
+      "Resveratrol"
+    ],
+    "recipe": "Serve frozen as snacks or in fruit salads."
+  },
+  {
+    "id": 14,
+    "name": "Bell Peppers",
+    "price": 2.89,
+    "price_per_unit": "10.5\u00a2/oz",
+    "points": 250,
+    "image": "../assets/peppers.jpg",
+    "ingredients": [
+      "Red and green peppers",
+      "Vitamin C",
+      "Capsaicin"
+    ],
+    "recipe": "Stuff with rice and beans or grill for fajitas."
+  },
+  {
+    "id": 15,
+    "name": "Avocados",
+    "price": 1.99,
+    "price_per_unit": "8\u00a2/oz",
+    "points": 190,
+    "image": "../assets/avocados.jpg",
+    "ingredients": [
+      "Avocado flesh",
+      "Healthy fats",
+      "Potassium"
+    ],
+    "recipe": "Mash into guacamole or slice over toast with eggs."
+  }
+]

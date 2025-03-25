@@ -1,3 +1,18 @@
+<?php
+  include('auth.php'); 
+  include('connection.php');
+
+  $user_id = $_SESSION['user_id'] ?? 1;
+
+  // Get user points
+  $stmt = $connect->prepare("SELECT point FROM users WHERE user_id = ?");
+  $stmt->bind_param("i", $user_id);
+  $stmt->execute();
+  $stmt->bind_result($user_points);
+  $stmt->fetch();
+  $stmt->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +28,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="./css/points.css">
+  <link rel="stylesheet" href="../css/points.css">
 
   <title>My Points</title>
 </head>
@@ -21,7 +36,7 @@
   <header>
     <nav>
       <section class="top-nav">
-        <a href=""><img src="./assets/Back.png" alt="Back arrow"></a>
+        <a href=""><img src="../assets/Back.png" alt="Back arrow"></a>
         <h1>My Points</h1>
       </section>
       <section class="location-bar">
@@ -34,9 +49,11 @@
   <main>
     <!-- Points Balance Section -->
     <section class="points-balance">
-      <h2>0</h2>
+      <h2><?php echo $user_points; ?></h2>
       <p>Points Balance</p>
     </section>
+
+
 
     <!-- Membership ID & History -->
     <section class="membership">
@@ -58,7 +75,7 @@
         <p class="offer-detail">Thank you for downloading the Walmart App!</p>
         <div class="offer-actions">
           <button class="blue-btn">Order Now</button>
-          <img src="./assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
         </div>
         
       </div>
@@ -67,7 +84,7 @@
         <p class="offer-detail">Purchase 5 items to earn 2X Points</p>
         <div class="offer-actions">
           <button class="blue-btn">Order Now</button>
-          <img src="./assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
       <div class="offer-card">
@@ -75,7 +92,7 @@
         <p class="offer-detail">500 Bonus Points on your first order</p>
         <div class="offer-actions">
           <button class="blue-btn">Order Now</button>
-          <img src="./assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>
@@ -88,7 +105,7 @@
         <p class="offer-detail">Earn points with every clearance grocery purchase</p>
         <div class="offer-actions">
           <button class="blue-btn">Order Now</button>
-          <img src="./assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
       <div class="offer-card">
@@ -96,7 +113,7 @@
         <p class="offer-detail">You get points on every successful referral</p>
         <div class="offer-actions">
           <button class="blue-btn">Order Now</button>
-          <img src="./assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>
@@ -104,25 +121,26 @@
 
   <footer class="bottom-nav">
     <div>
-      <a href="./index.html"><i class="fa-solid fa-house"></i></a>
+      <a href="./index.php"><i class="fa-solid fa-house"></i></a>
       <p>Home</p>
     </div>
     <div>
-      <a href="./index.html"><i class="fa-solid fa-shapes"></i></a>
+      <a href="./index.php"><i class="fa-solid fa-shapes"></i></a>
       <p>Categories</p>
     </div>
     <div>
-      <a href="./index.html"><i class="fa-solid fa-piggy-bank"></i></a>
+      <a href="./index.php"><i class="fa-solid fa-piggy-bank"></i></a>
       <p>My Points</p>
     </div>
     <div>
-      <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
       <p>Cart</p>
     </div>
     <div>
-      <a href="./profile.html"><i class="fa-solid fa-user"></i></a>
+      <a href="./profile.php"><i class="fa-solid fa-user"></i></a>
       <p>Profile</p>
     </div>
   </footer>
 </body>
 </html>
+
