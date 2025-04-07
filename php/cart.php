@@ -23,6 +23,64 @@
   $street_address = $street_address ?: "1234 Address st";
   $province = $province ?: "Toronto, ON";
   $full_address = "$street_address, $province, $postal_code";
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) && isset($_POST['product_id'])) {
+    $product_id = $_POST['product_id'];
+    $name = $_POST['name'];
+    $image = $_POST['image'];
+    $price = $_POST['price'];
+    $price_per_unit = $_POST['price_per_unit'];
+    $points = $_POST['points'] ?? 0;
+
+    if (!isset($_SESSION['clearance_cart'])) {
+        $_SESSION['clearance_cart'] = [];
+    }
+
+    if (isset($_SESSION['clearance_cart'][$product_id])) {
+        $_SESSION['clearance_cart'][$product_id]['quantity'] += 1;
+    } else {
+        $_SESSION['clearance_cart'][$product_id] = [
+            'name' => $name,
+            'image' => $image,
+            'price' => $price,
+            'price_per_unit' => $price_per_unit,
+            'points' => $points,
+            'quantity' => 1
+        ];
+    }
+    
+
+    // If it's an AJAX call, return JSON and exit
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo json_encode(['success' => true]);
+        exit;
+    }
+  }
+  // Dynamic cart calculations
+  $item_count = 0;
+  $subtotal = 0;
+  $tax_rate = 0.13;
+  $points_earned = 0;
+  
+  foreach (['cart', 'clearance_cart'] as $type) {
+    if (!empty($_SESSION[$type])) {
+      foreach ($_SESSION[$type] as $item) {
+        $qty = $item['quantity'] ?? 1;
+        $price = $item['product_price'] ?? $item['price'] ?? 0;
+        $item_count += $qty;
+        $subtotal += $price * $qty;
+
+        if ($type === 'clearance_cart') {
+          $points = $item['points'] ?? 0;
+          $points_earned += $points * $qty;
+        }
+      }
+    }
+  }
+
+  $tax = $subtotal * $tax_rate;
+  $total = $subtotal + $tax;
+
 ?>
 
 <!DOCTYPE html>
@@ -56,54 +114,55 @@
 
   <main>
     <section class="cart-status">
-      <p>You have 2 items in your cart</p>
+      <p><?php echo "You have {$item_count} items in your cart"; ?></p>
     </section>
 
     <!-- Cart Items -->
     <section class="cart-items">
-      <div class="cart-card">
-        <img src="../assets/kiwi.jpg" alt="Kiwi">
-        <div class="cart-details">
-          <h3>Kiwis</h3>
-          <div class="price-quantity">
-            <div class="price-text">
-              <p class="subtext">11.9 ¢/oz</p>
-              <p class="price">$2.39</p>
-            </div>
-            <div class="quantity">
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
-            </div>
-          </div>
-          <div class="actions">
-            <a href="#">Remove</a>
-            <a href="#">Save for later</a>
-          </div>
-        </div>
-      </div>
+    <?php
+      function renderCartItems($cartArray, $type) {
+        foreach ($cartArray as $product_id => $item) {
+          $name = $item['product_name'] ?? $item['name'];
+          $image = $item['product_image'] ?? $item['image'];
+          $price = $item['product_price'] ?? $item['price'];
+          $price_per_unit = $item['price_per_unit'] ?? '11.9¢/oz';
+          $quantity = $item['quantity'] ?? 1;
 
-      <div class="cart-card">
-        <img src="../assets/orange.jpg" alt="Orange">
-        <div class="cart-details">
-          <h3>Oranges</h3>
-          <div class="price-quantity">
-            <div class="price-text">
-              <p class="subtext">11.9 ¢/oz</p>
-              <p class="price">$2.39</p>
-            </div>
-            <div class="quantity">
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
-            </div>
-          </div>
-          <div class="actions">
-            <a href="#">Remove</a>
-            <a href="#">Save for later</a>
-          </div>
-        </div>
-      </div>
+          echo '<div class="cart-card" id="' . $type . '-' . $product_id . '">';
+          echo '<img src="' . $image . '" alt="' . $name . '">';
+          echo '<div class="cart-details">';
+          echo '<h3>' . $name . '</h3>';
+          echo '<div class="price-quantity">';
+          echo '<div class="price-text">';
+          echo '<p class="subtext">' . $price_per_unit . '</p>';
+          echo '<p class="price">$' . $price . '</p>';
+          echo '</div>';
+          if (isset($item['points'])&& $item['points'] >0) {
+            echo '<div class="points-badge-clearance"><span class="dot"></span> ' . $item['points'] . '</div>';
+          }
+          echo '<div class="quantity">';
+          echo '<button onclick="updateQuantity(\'' . $product_id . '\', \'' . $type . '\', \'decrement\')">-</button>';
+          echo '<span id="qty-' . $type . '-' . $product_id . '">' . $quantity . '</span>';
+          echo '<button onclick="updateQuantity(\'' . $product_id . '\', \'' . $type . '\', \'increment\')">+</button>';
+          echo '</div>';
+          echo '</div>';
+          echo '<div class="actions">';
+          echo '<a href="#">Remove</a>';
+          echo '<a href="#">Save for later</a>';
+          echo '</div>';
+          echo '</div>';
+          echo '</div>';
+        }
+      }
+
+      if (!empty($_SESSION['cart'])) {
+        renderCartItems($_SESSION['cart'], 'cart');
+      }
+
+      if (!empty($_SESSION['clearance_cart'])) {
+        renderCartItems($_SESSION['clearance_cart'], 'clearance_cart');
+      }
+      ?>
     </section>
 
     <!-- Suggestions -->
@@ -150,16 +209,20 @@
     <section class="summary">
       <div class="subtotal-tax">
         <span>Subtotal</span>
-        <span>$499.60</span>
+        <span><?php echo "$" . number_format($subtotal, 2); ?></span>
       </div>
       <div class="subtotal-tax">
         <span>Taxes</span>
-        <span>$41.40</span>
+        <span><?php echo "$" . number_format($tax, 2); ?></span>
+      </div>
+      <div class="subtotal-tax">
+        <span>Points Earned:</span>
+        <span><?php echo  "{$points_earned}"; ?></span>
       </div>
       <hr>
       <div class="subtotal-tax total">
         <strong>Total</strong>
-        <strong>$541.00</strong>
+        <strong><?php echo "$" . number_format($total, 2); ?></strong>
       </div>
       <a href="payment.php"><button class="pay-btn">Proceed to Payment</button></a>
     </section>
@@ -187,5 +250,72 @@
       <p>Profile</p>
     </div>
   </footer>
+  <script>
+    function updateQuantity(productId, cartType, action) {
+      const formData = new FormData();
+      formData.append('product_id', productId);
+      formData.append('cart_type', cartType);
+      formData.append('action', action);
+
+      fetch('update_cart.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.removed) {
+          const el = document.getElementById(cartType + '-' + productId);
+          if (el) el.remove();
+        } else {
+          document.getElementById('qty-' + cartType + '-' + productId).textContent = data.quantity;
+        }
+        // ✅ Update cart count
+        document.querySelector('.cart-status p').textContent = `You have ${data.item_count} items in your cart`;
+
+        // ✅ Update subtotal/tax/total
+        document.querySelector('.summary .subtotal-tax:nth-of-type(1) span:last-child').textContent = `$${data.subtotal}`;
+        document.querySelector('.summary .subtotal-tax:nth-of-type(2) span:last-child').textContent = `$${data.tax}`;
+        document.querySelector('.summary .total strong:last-child').textContent = `$${data.total}`;
+        const pointsEl = document.getElementById('points-earned');
+        if (pointsEl) {
+          pointsEl.textContent = `Points Earned: ${data.points_earned}`;
+        }
+      })
+      .catch(err => console.error("Error updating cart:", err));
+    }
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', function () {
+    const productCard = this.closest('.product');
+    const name = productCard.querySelector('.product-name p').textContent;
+    const image = productCard.querySelector('img').getAttribute('src');
+    const price = productCard.querySelector('.price').textContent.replace('$', '').trim();
+    const pricePerUnit = productCard.querySelector('.price-per-unit')?.textContent || '';
+    const points = parseInt(productCard.querySelector('.points-badge')?.textContent.replace(/\D/g, '') || '0');
+
+    const formData = new FormData();
+    formData.append('product_id', name.toLowerCase().replace(/\s+/g, '_'));
+    formData.append('name', name);
+    formData.append('image', image);
+    formData.append('price', price);
+    formData.append('price_per_unit', pricePerUnit);
+    formData.append('points', points);
+
+    fetch('cart.php', {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest' // 🔥 Key line
+      },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        location.reload(); // Reload to reflect cart updates
+      }
+    })
+    .catch(err => console.error(err));
+  });
+});
+  </script>
 </body>
 </html>

@@ -2,6 +2,13 @@
   include('auth.php'); 
   include('connection.php');
 
+  if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+  }
+  if (!isset($_SESSION['clearance_cart'])) {
+    $_SESSION['clearance_cart'] = [];
+  }
+
   $user_id = $_SESSION['user_id'] ?? 1;
 
   // Fetch user info
@@ -18,34 +25,35 @@
   $stmt->fetch();
   $stmt->close();
 
+  // fallback values
   $first_name = $first_name ?: "User";
   $postal_code = $postal_code ?: "L4Y 1N6";
   $street_address = $street_address ?: "1234 Address st";
   $province = $province ?: "Toronto, ON";
   $full_address = "$street_address, $province, $postal_code";
 
-  $cart = $_SESSION['cart'] ?? [];
-  $clearance_cart = $_SESSION['clearance_cart'] ?? [];
+  // Load products
+  $productsData = json_decode(file_get_contents('../data/products.json'), true);
 
-  function calculateCartTotals($items) {
-    $totals = ['subtotal' => 0, 'points' => 0];
-    foreach ($items as $item) {
-      $price = isset($item['price']) ? floatval($item['price']) : 0;
-      $quantity = isset($item['quantity']) ? intval($item['quantity']) : 1;
-      $points = isset($item['points']) ? intval($item['points']) : 0;
+  // Merge regular and clearance cart
+  $cart = array_merge($_SESSION['cart'], $_SESSION['clearance_cart']);
 
-      $totals['subtotal'] += $price * $quantity;
-      $totals['points'] += $points * $quantity;
-    }
-    return $totals;
+  $subtotal = 0;
+  $points_to_receive = 0;
+
+  foreach ($cart as $item) {
+      $product = array_filter($productsData, fn($p) => $p['id'] == $item['id']);
+      $product = array_values($product)[0] ?? null;
+
+      if ($product) {
+        $subtotal += $product['price'] * $item['quantity'];
+        $points_to_receive += $product['points'] * $item['quantity'];
+      }
   }
 
-  $totals_cart = calculateCartTotals($cart);
-  $totals_clearance = calculateCartTotals($clearance_cart);
+  $tax = round($subtotal * 0.13, 2);
 
-  $full_subtotal = $totals_cart['subtotal'] + $totals_clearance['subtotal'];
-  $points_to_receive = $totals_cart['points'] + $totals_clearance['points'];
-
+  // Get user points
   $stmt = $connect->prepare("SELECT point FROM users WHERE user_id = ?");
   $stmt->bind_param("i", $user_id);
   $stmt->execute();
@@ -53,20 +61,29 @@
   $stmt->fetch();
   $stmt->close();
 
-  $redeemable_dollars = min($user_points / 1000, $full_subtotal);
-  $redeemed_points = floor($redeemable_dollars * 1000);
-
-  $subtotal = $full_subtotal - $redeemable_dollars;
-  $tax = round($subtotal * 0.13, 2);
-  $total = round($subtotal + $tax, 2);
+  $redeemable_dollars = min($user_points / 1000, $subtotal); 
+  $redeemed_points = floor($redeemable_dollars * 1000); 
+  $total = ($subtotal - $redeemable_dollars) + $tax;
 ?>
+
+<!-- The rest of the HTML remains the same -->
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="../css/payment.css" />
   <title>Payment</title>
 </head>
@@ -83,6 +100,7 @@
   </header>
 
   <main>
+    <!-- Delivery Address Options -->
     <section class="delivery-address">
       <label class="address-option">
         <div class="address-text">
@@ -101,43 +119,38 @@
       </label>
     </section>
 
+
+    <!-- Item Details -->
     <section class="item-details">
       <div class="item-header">
         <h4>Item Details</h4>
         <a href="#">View All</a>
       </div>
       <div class="item-images">
-        <?php
-          $all_cart_items = array_merge(
-            array_map(fn($item) => ['type' => 'regular', 'data' => $item], $cart),
-            array_map(fn($item) => ['type' => 'clearance', 'data' => $item], $clearance_cart)
-          );
-
-          $displayed = 0;
-          if (!empty($all_cart_items)) {
-            foreach ($all_cart_items as $itemWrapper) {
-              if ($displayed >= 4) break;
-              $item = $itemWrapper['data'];
-              $image = $item['image'] ?? null;
-              if ($image) {
-                echo '<div class="item-img"><img src="' . htmlspecialchars($image) . '" alt="Product Image"></div>';
-                $displayed++;
-              }
-            }
-          } else {
-            echo '<p>No items in cart</p>';
-          }
-        ?>
+        <div class="item-img"></div>
+        <div class="item-img"></div>
+        <div class="item-img"></div>
       </div>
     </section>
 
+    <!-- Payment Method -->
     <section class="payment-method">
       <h4>Payment Method</h4>
-      <label><input type="radio" name="payment" /> Credit / Debit Card</label>
-      <label><input type="radio" name="payment" /> Paypal</label>
-      <label><input type="radio" name="payment" /> Pay with Apple Pay</label>
+      <label>
+        <input type="radio" name="payment" />
+        Credit / Debit Card
+      </label>
+      <label>
+        <input type="radio" name="payment" />
+        Paypal
+      </label>
+      <label>
+        <input type="radio" name="payment" />
+        Pay with Apple Pay
+      </label>
     </section>
 
+    <!-- Redeem Points -->
     <section class="redeem-points">
       <label>
         <input type="checkbox" id="redeem-check" />
@@ -145,6 +158,7 @@
       </label>
     </section>
 
+    <!-- Summary -->
     <section class="payment-summary">
       <div class="row">
         <span>Points to receive</span>
@@ -161,7 +175,7 @@
       </div>
       <div class="row">
         <span>Redeemed Points</span>
-        <span id="redeemed-val">$<?php echo number_format($redeemable_dollars, 2); ?></span>
+        <span id="redeemed-val">$0.00</span>
       </div>
       <hr />
       <div class="row total">
@@ -170,47 +184,26 @@
       </div>
     </section>
 
+    <!-- Submit Form -->
     <form action="confirm_order.php" method="POST">
-      <input type="hidden" name="redeemed_points" id="redeemed-points" value="<?php echo $redeemed_points; ?>" />
+      <input type="hidden" name="redeemed_points" id="redeemed-points" value="0" />
       <input type="hidden" name="points_to_receive" value="<?php echo $points_to_receive; ?>" />
-      <input type="hidden" name="total" id="hidden-total" value="<?php echo number_format($total, 2); ?>" />
+      <input type="hidden" name="total" id="hidden-total" value="<?php echo $total; ?>" />
       <button type="submit" class="confirm-btn">Confirm Order</button>
       <a href="./cart.php" class="back-to-cart">Back to Cart</a>
     </form>
+
   </main>
 
-  <script>
-    const subtotalOriginal = parseFloat(<?php echo $full_subtotal; ?>);
-    const userPoints = parseInt(<?php echo $user_points; ?>);
-
-    const redeemCheckbox = document.getElementById('redeem-check');
-    const subtotalField = document.getElementById('subtotal');
-    const taxField = document.getElementById('tax');
-    const redeemedVal = document.getElementById('redeemed-val');
-    const finalTotal = document.getElementById('final-total');
-    const hiddenTotal = document.getElementById('hidden-total');
-    const redeemedPointsField = document.getElementById('redeemed-points');
-
-    function updateTotals() {
-      let redeemed = 0;
-      if (redeemCheckbox.checked) {
-        redeemed = Math.min(userPoints / 1000, subtotalOriginal);
-      }
-
-      const newSubtotal = subtotalOriginal - redeemed;
-      const tax = +(newSubtotal * 0.13).toFixed(2);
-      const total = +(newSubtotal + tax).toFixed(2);
-
-      subtotalField.textContent = `$${newSubtotal.toFixed(2)}`;
-      taxField.textContent = `$${tax.toFixed(2)}`;
-      redeemedVal.textContent = `$${redeemed.toFixed(2)}`;
-      finalTotal.textContent = `$${total.toFixed(2)}`;
-      hiddenTotal.value = total.toFixed(2);
-      redeemedPointsField.value = Math.floor(redeemed * 1000);
-    }
-
-    redeemCheckbox.addEventListener('change', updateTotals);
-    document.addEventListener('DOMContentLoaded', updateTotals);
+    <script>
+    window.orderData = {
+      subtotal: <?php echo $subtotal; ?>,
+      tax: <?php echo $tax; ?>,
+      userPoints: <?php echo $user_points; ?>
+    };
   </script>
+  <script src="../js/payment.js"></script>
+
+
 </body>
 </html>

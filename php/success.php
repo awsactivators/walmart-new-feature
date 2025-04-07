@@ -1,6 +1,13 @@
 <?php
 include('auth.php'); 
 $earned = $_GET['earned'] ?? 0;
+
+if (isset($_GET['clear']) && $_GET['clear'] == 1) {
+  unset($_SESSION['cart']);
+  unset($_SESSION['clearance_cart']);
+  header('Location: index.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +31,7 @@ $earned = $_GET['earned'] ?? 0;
     </p>
 
     <div class="success-actions">
-      <div class="home-btn"><a href="./index.html">Home</a></div>
+      <div class="home-btn"><a href="success.php?clear=1">Home</a></div>
       <a href="./points.html" class="view-points-link">View Points</a>
     </div>
   </main>

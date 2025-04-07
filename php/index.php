@@ -23,6 +23,75 @@
     $street_address = $street_address ?: "1234 Address st";
     $province = $province ?: "Toronto, ON";
     $full_address = "$street_address, $province, $postal_code";
+
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      try {
+          if (isset($_POST['fetch_cart'])) {
+            $cart = $_SESSION['cart'] ?? [];
+            $clearance_cart = $_SESSION['clearance_cart'] ?? [];
+        
+            $combined_cart = $cart + $clearance_cart; // Merge both (no worry if keys overlap)
+        
+            $cart_count = array_sum(array_column($cart, 'quantity')) + array_sum(array_column($clearance_cart, 'quantity'));
+        
+            echo json_encode([
+                'cart' => $combined_cart,
+                'cart_count' => $cart_count
+            ]);
+            exit;
+          }
+  
+          if (isset($_POST['product_id'], $_POST['action'], $_POST['product_name'], $_POST['product_image'], $_POST['product_price'], $_POST['product_points'])) {
+              $product_id = $_POST['product_id'];
+              $action = $_POST['action'];
+              $product_name = $_POST['product_name'];
+              $product_image = $_POST['product_image'];
+              $product_price = $_POST['product_price'];
+              $product_points = $_POST['product_points'];
+  
+              if (!isset($_SESSION['cart'][$product_id])) {
+                  $_SESSION['cart'][$product_id] = [
+                      'quantity' => 0,
+                      'name' => $product_name,
+                      'image' => $product_image,
+                      'price' => $product_price,
+                      'points' => $product_points
+                  ];
+              }
+  
+              if ($action === 'increase') {
+                  $_SESSION['cart'][$product_id]['quantity'] += 1;
+              } elseif ($action === 'decrease' && isset($_SESSION['cart'][$product_id])) {
+                  $_SESSION['cart'][$product_id]['quantity'] -= 1;
+                  if ($_SESSION['cart'][$product_id]['quantity'] <= 0) {
+                      unset($_SESSION['cart'][$product_id]);
+                  }
+              }
+  
+              $cart = $_SESSION['cart'] ?? [];
+              $clearance_cart = $_SESSION['clearance_cart'] ?? [];
+
+              $combined_cart = $cart + $clearance_cart;
+              $cart_count = array_sum(array_column($cart, 'quantity')) + array_sum(array_column($clearance_cart, 'quantity'));
+
+              echo json_encode([
+                  'cart' => $combined_cart,
+                  'cart_count' => $cart_count
+              ]);
+
+              exit;
+          }
+  
+          // If no valid action was taken, return a default JSON response
+          echo json_encode(["status" => "error", "message" => "Invalid request"]);
+          exit;
+  
+      } catch (Exception $e) {
+          echo json_encode(['error' => $e->getMessage()]);
+          exit;
+      }
+  }
 ?>
 
 
@@ -129,8 +198,8 @@
               <p class="price">$2.39</p>
               <p class="price-per-unit">11.9¢/oz</p>
             </div>
-            <div>
-              <button class="add-to-cart">+</button>
+            <div  id="cart-btn-1">
+              <button class="add-to-cart" onclick="updateCart(1, 'increase')">+</button>
             </div>
           </div>
         </div>
@@ -144,8 +213,8 @@
               <p class="price">$3.19</p>
               <p class="price-per-unit">11.9¢/oz</p>
             </div>
-            <div>
-              <button class="add-to-cart">+</button>
+            <div  id="cart-btn-2">
+              <button class="add-to-cart" onclick="updateCart(2, 'increase')">+</button>
             </div>
           </div>
         </div>
@@ -177,4 +246,113 @@
     </div>
   </footer>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetchCartData();
+    });
+
+    function fetchCartData() {
+        fetch('index.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'fetch_cart=1'
+        })
+        .then(response => response.json())
+        .then(data => {
+            let cart = data.cart;
+            let cartCount = data.cart_count;
+            Object.keys(cart).forEach(productId => {
+              const quantity = cart[productId].quantity || 0;
+              updateCartButton(productId, cart[productId].quantity || 0);
+            });
+            updateCartCount(cartCount);
+        })
+        .catch(error => console.error('Error fetching cart:', error));
+    }
+
+    function updateCart(productId, action) {
+    let productElement = document.querySelector(`#cart-btn-${productId}`);
+    if (!productElement) {
+        console.error(`Product container not found for product ID: ${productId}`);
+        return;
+    }
+
+    let productContainer = productElement.closest('.product');
+    if (!productContainer) {
+        console.error(`Could not find product container for product ID: ${productId}`);
+        return;
+    }
+
+    // Try alternative selectors if elements are missing
+    let productNameElement = productContainer.querySelector('.product-name a') || 
+                             productContainer.querySelector('.product-name p');
+    let productImageElement = productContainer.querySelector('img');
+    let productPriceElement = productContainer.querySelector('.price');
+    let productPointsElement = productContainer.querySelector('.points-tag');
+
+    if (!productNameElement || !productImageElement || !productPriceElement) {
+        console.error(`Missing product details for product ID: ${productId}`);
+        console.log({
+            productNameElement,
+            productImageElement,
+            productPriceElement,
+            productPointsElement
+        });
+        return;
+    }
+
+    let productName = productNameElement.textContent.trim();
+    let productImage = productImageElement.getAttribute('src');
+    let productPrice = productPriceElement.textContent.replace('$', '').trim();
+    let productPoints = productPointsElement ? productPointsElement.textContent.trim() : "0";
+
+    let formData = new URLSearchParams();
+    formData.append("product_id", productId);
+    formData.append("action", action);
+    formData.append("product_name", productName);
+    formData.append("product_image", productImage);
+    formData.append("product_price", productPrice);
+    formData.append("product_points", productPoints);
+
+    fetch('index.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    })
+    .then(response => response.text()) // Fetch as text first for debugging
+    .then(text => {
+        console.log("Raw Response:", text);
+        let data = JSON.parse(text);
+        updateCartButton(productId, data.cart[productId]?.quantity || 0);
+        updateCartCount(data.cart_count);
+    })
+    .catch(error => console.error('JSON Parse Error:', error));
+}
+
+
+
+    function updateCartButton(productId, quantity) {
+        let buttonContainer = document.getElementById(`cart-btn-${productId}`);
+        if (!buttonContainer) {
+            console.error(`Button container not found for product ${productId}`);
+            return;
+        }
+        if (quantity > 0) {
+            buttonContainer.innerHTML = `
+                <button class="add-to-cart" onclick="updateCart(${productId}, 'decrease')">-</button>
+                <span>${quantity}</span>
+                <button class="add-to-cart"  onclick="updateCart(${productId}, 'increase')">+</button>
+            `;
+        } else {
+            buttonContainer.innerHTML = `<button class="add-to-cart" onclick="updateCart(${productId}, 'increase')">+</button>`;
+        }
+    }
+
+    function updateCartCount(count) {
+        let cartCountElement = document.querySelector(".cart-count");
+        if (cartCountElement) {
+            cartCountElement.textContent = count;
+        }
+    }
+  </script>
 </html>

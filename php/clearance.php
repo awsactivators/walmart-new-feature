@@ -2,6 +2,11 @@
   include('auth.php'); 
   include('connection.php');
 
+  if (!isset($_SESSION['clearance_cart'])) {
+    $_SESSION['clearance_cart'] = [];
+}
+
+
   $user_id = $_SESSION['user_id'] ?? 1;
 
   $stmt = $connect->prepare("
@@ -23,6 +28,75 @@
   $street_address = $street_address ?: "1234 Address st";
   $province = $province ?: "Toronto, ON";
   $full_address = "$street_address, $province, $postal_code";
+
+  if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+  }
+  if (!isset($_SESSION['clearance_cart'])) {
+      $_SESSION['clearance_cart'] = [];
+  }
+
+  function getTotalCartCount() {
+      $cartCount = array_sum(array_column($_SESSION['cart'], 'quantity'));
+      $clearanceCount = array_sum(array_column($_SESSION['clearance_cart'], 'quantity'));
+      return $cartCount + $clearanceCount;
+  }
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $product_id = $_POST['product_id'] ?? null;
+    $action = $_POST['action'] ?? null;
+    $name = $_POST['name'] ?? '';
+    $image = $_POST['image'] ?? '';
+    $price = $_POST['price'] ?? 0;
+    $price_per_unit = $_POST['price_per_unit'] ?? '';
+    $points = $_POST['points'] ?? 0;
+
+    if ($product_id && $action) {
+        switch ($action) {
+            case 'add':
+                if (!isset($_SESSION['clearance_cart'][$product_id])) {
+                    $_SESSION['clearance_cart'][$product_id] = [
+                        'id' => $product_id,
+                        'name' => $name,
+                        'image' => $image,
+                        'price' => $price,
+                        'price_per_unit' => $price_per_unit,
+                        'points' => $points,
+                        'quantity' => 1
+                    ];
+                } else {
+                    $_SESSION['clearance_cart'][$product_id]['quantity'] += 1;
+                }
+                break;
+
+            case 'increment':
+                if (isset($_SESSION['clearance_cart'][$product_id])) {
+                    $_SESSION['clearance_cart'][$product_id]['quantity'] += 1;
+                }
+                break;
+
+            case 'decrement':
+                if (isset($_SESSION['clearance_cart'][$product_id])) {
+                    $_SESSION['clearance_cart'][$product_id]['quantity'] -= 1;
+                    if ($_SESSION['clearance_cart'][$product_id]['quantity'] <= 0) {
+                        unset($_SESSION['clearance_cart'][$product_id]);
+                    }
+                }
+                break;
+        }
+    }
+
+    echo json_encode([
+        'cart' => $_SESSION['clearance_cart'],
+        'cart_count' => getTotalCartCount()
+    ]);
+    exit;
+}
+
+// Handle cart count request separately
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
+    echo json_encode(['cart_count' => getTotalCartCount()]);
+    exit;
+}
 ?>
 
 

@@ -130,7 +130,7 @@
 }
 
 /* Add-to-Cart Button */
-.add-to-cart {
+.add-to-cart{
     background: #0B59D5;
     color: white;
     border: none;
@@ -144,6 +144,21 @@
     align-items: center;
     justify-content: center;
 }
+
+.increment, .decrement{
+    background: #0B59D5;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 30px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .add-to-cart i {
     font-size: 20px;

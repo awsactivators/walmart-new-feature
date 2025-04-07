@@ -181,7 +181,23 @@
     right: -50%;
     margin-bottom: 8px;
   }
-
+  .points-badge-clearance{
+      border: 1px solid #FCB61A;
+        color: #FCB61A;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 15px;
+        font-weight: bold;
+        width: 81px;
+        display: flex
+;
+        align-items: center;
+        gap: 15px;
+        position: relative;
+        top: -30px;
+        right: -40%;
+        margin-bottom: 18px;
+  }
   .dot {
     height: 15px;
     width: 15px;

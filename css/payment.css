@@ -130,7 +130,10 @@
     background: #eee;
     border-radius: 15px;
   }
-
+  .item-img img{
+    width: 80px;
+    height:80px;
+  }
   .payment-method h4 {
     font-size: 16px;
     margin-bottom: 10px;

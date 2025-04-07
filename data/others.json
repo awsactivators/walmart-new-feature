@@ -1,104 +1,104 @@
 [
   {
-    "id": 1,
+    "id": 8727,
     "name": "Microwave Oven",
     "price": 89.99,
     "weight": "20 lbs",
     "image": "../assets/microwave.jpg"
   },
   {
-    "id": 2,
+    "id": 4987,
     "name": "Non-stick Frying Pan",
-    "price": 24.50,
+    "price": 24.5,
     "weight": "2.2 lbs",
     "image": "../assets/frying-pan.jpg"
   },
   {
-    "id": 3,
-    "name": "Stainless Steel Pot",
-    "price": 34.00,
+    "id": 2515,
+    "name": "Stainless Steel poda",
+    "price": 34.0,
     "weight": "3.5 lbs",
     "image": "../assets/pot.png"
   },
   {
-    "id": 4,
+    "id": 9080,
     "name": "Electric Kettle",
     "price": 29.99,
     "weight": "1.8 lbs",
     "image": "../assets/kettle.jpg"
   },
   {
-    "id": 5,
+    "id": 9512,
     "name": "Toaster",
     "price": 21.75,
     "weight": "2 lbs",
     "image": "../assets/toaster.jpg"
   },
   {
-    "id": 6,
+    "id": 8679,
     "name": "Blender",
-    "price": 45.00,
+    "price": 45.0,
     "weight": "3 lbs",
     "image": "../assets/blender.jpg"
   },
   {
-    "id": 7,
+    "id": 7933,
     "name": "Rice Cooker",
     "price": 54.99,
     "weight": "4.2 lbs",
     "image": "../assets/rice-cooker.jpg"
   },
   {
-    "id": 8,
+    "id": 9605,
     "name": "Knife Set",
     "price": 19.95,
     "weight": "1.5 lbs",
     "image": "../assets/knife-set.jpg"
   },
   {
-    "id": 9,
+    "id": 1525,
     "name": "Mixing Bowls",
-    "price": 15.50,
+    "price": 15.5,
     "weight": "2.3 lbs",
     "image": "../assets/mixing-bowls.jpg"
   },
   {
-    "id": 10,
+    "id": 7951,
     "name": "Cutting Board",
     "price": 12.99,
     "weight": "1.2 lbs",
     "image": "../assets/cutting-board.jpg"
   },
   {
-    "id": 11,
+    "id": 8368,
     "name": "Dish Rack",
     "price": 18.99,
     "weight": "2.8 lbs",
     "image": "../assets/dish-rack.jpg"
   },
   {
-    "id": 12,
+    "id": 2766,
     "name": "Storage Containers",
     "price": 22.49,
     "weight": "2 lbs",
     "image": "../assets/containers.jpg"
   },
   {
-    "id": 13,
+    "id": 8605,
     "name": "Iron",
-    "price": 35.00,
+    "price": 35.0,
     "weight": "2.5 lbs",
     "image": "../assets/iron.jpg"
   },
   {
-    "id": 14,
+    "id": 2464,
     "name": "Clothes Hanger Pack",
     "price": 10.99,
     "weight": "1.1 lbs",
     "image": "../assets/hangers.jpg"
   },
   {
-    "id": 15,
+    "id": 7737,
     "name": "Desk Lamp",
     "price": 27.75,
     "weight": "1.6 lbs",
