@@ -126,7 +126,7 @@
           <img src="./assets/walmart-logo.png" alt="Walmart Logo">
         </div>
         <div class="cart">
-          <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">0</span></a>
+          <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">0</span></a>
         </div>
       </section>
 

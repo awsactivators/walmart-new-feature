@@ -166,42 +166,57 @@
     </section>
 
     <!-- Suggestions -->
+    <?php
+    // Grocery data
+    $grocery_data = json_decode(file_get_contents('./data/products.json'), true); 
+
+    // Get cart item names (case-insensitive)
+    $cart_names = [];
+    foreach (['cart', 'clearance_cart'] as $type) {
+      if (!empty($_SESSION[$type])) {
+        foreach ($_SESSION[$type] as $item) {
+          $cart_names[] = strtolower($item['name'] ?? $item['product_name']);
+        }
+      }
+    }
+
+    // Filter out items already in cart
+    $filtered_groceries = array_filter($grocery_data, function ($item) use ($cart_names) {
+      return !in_array(strtolower($item['name']), $cart_names);
+    });
+
+    // Randomly pick 2 from remaining
+    $suggestions = [];
+    if (count($filtered_groceries) >= 2) {
+      $keys = array_rand($filtered_groceries, 2);
+      foreach ((array)$keys as $key) {
+        $suggestions[] = $filtered_groceries[$key];
+      }
+    }
+    ?>
+
     <section class="suggestions">
       <h4>Suggested with your order</h4>
       <p>Earn more points!</p>
       <div class="products">
-        <div class="product">
-          <div class="points-badge"><span class="dot"></span> 250</div>
-          <img src="./assets/strawberry.jpg" alt="Strawberry">
-          <div class="product-name">
-            <p>Strawberry</p>
-          </div>
-          <div class="price-container">
-            <div class="price-col">
-              <p class="price">$2.39</p>
-              <p class="price-per-unit">11.9¢/oz</p>
+        <?php foreach ($suggestions as $item): ?>
+          <div class="product">
+            <div class="points-badge"><span class="dot"></span> <?php echo $item['points']; ?></div>
+            <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+            <div class="product-name">
+              <p><?php echo htmlspecialchars($item['name']); ?></p>
             </div>
-            <div>
-              <button class="add-to-cart">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="product">
-          <div class="points-badge"><span class="dot"></span> 250</div>
-          <img src="./assets/pomegranate.jpg" alt="Pomegranate">
-          <div class="product-name">
-            <p>Pomegranate</p>
-          </div>
-          <div class="price-container">
-            <div class="price-col">
-              <p class="price">$3.19</p>
-              <p class="price-per-unit">11.9¢/oz</p>
-            </div>
-            <div>
-              <button class="add-to-cart">+</button>
+            <div class="price-container">
+              <div class="price-col">
+                <p class="price">$<?php echo number_format($item['price'], 2); ?></p>
+                <p class="price-per-unit"><?php echo $item['price_per_unit']; ?></p>
+              </div>
+              <div>
+                <button class="add-to-cart">+</button>
+              </div>
             </div>
           </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
