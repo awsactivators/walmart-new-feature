@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const id = parseInt(urlParams.get("id"));
   const type = urlParams.get("type");
 
-  const file = type === "others" ? "./data/others.json" : "./data/products.json";
+  const file = type === "others" ? "../data/others.json" : "../data/products.json";
 
   fetch(file)
     .then(res => res.json())

@@ -110,7 +110,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="./css/index.css">
 
   <title>Walmart Home</title>
 </head>
@@ -123,7 +123,7 @@
       </div>
 
         <div class="store-title">
-          <h2>Walmart</h2>
+          <img src="./assets/walmart-logo.png" alt="Walmart Logo">
         </div>
         <div class="cart">
           <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
@@ -152,7 +152,7 @@
   
     <!-- Grocery Clearance Ad Card -->
     <section class="clearance-card">
-      <img src="../assets/grocerybag.png" alt="Grocery Clearance">
+      <img src="./assets/grocerybag.png" alt="Grocery Clearance">
       <div class="clearance-details">
         <div class="clearance-text">
           <h4>Grocery Clearance</h4>
@@ -189,7 +189,7 @@
       <h3>Groceries <span class="item-count">(12.3k)</span></h3>
       <div class="products">
         <div class="product">
-          <img src="../assets/orange.jpg" alt="Oranges">
+          <img src="./assets/orange.jpg" alt="Oranges">
           <div class="product-name">
             <p class=""><a href="product-detail.php" style="text-decoration: none;">Oranges</a></p>
           </div>
@@ -204,7 +204,7 @@
           </div>
         </div>
         <div class="product">
-          <img src="../assets/kiwi.jpg" alt="Kiwi">
+          <img src="./assets/kiwi.jpg" alt="Kiwi">
           <div class="product-name">
             <p>Kiwi</p>
           </div>

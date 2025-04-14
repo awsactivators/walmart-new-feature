@@ -16,12 +16,12 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/success.css" />
+  <link rel="stylesheet" href="./css/success.css" />
   <title>Order Success</title>
 </head>
 <body>
   <main class="success-page">
-    <img src="../assets/Foodbasket.png" alt="Success Basket" class="success-img" />
+    <img src="./assets/Foodbasket.png" alt="Success Basket" class="success-img" />
 
     <h2>Order placed successfully!</h2>
 

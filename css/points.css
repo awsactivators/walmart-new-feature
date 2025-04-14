@@ -1,5 +1,5 @@
-/* Mobile Styles (max-width: 600px) */
-@media (max-width: 600px) {
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
 
   /* General Reset */
   * {
@@ -53,7 +53,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 15px; */
   }
 
   .location-bar {
@@ -104,6 +103,41 @@
     text-decoration: none;
   }
 
+  /* How to works */
+  .how-it-works {
+    background: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .how-it-works h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .how-it-works-grid {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .how-it-works-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    width: 30%;
+  }
+
+  .how-it-works-grid img {
+    width: 60px;
+    margin-bottom: 8px;
+  }
+
   /* Offers & Ways to Earn */
   .offers, .ways-to-earn {
     padding: 10px;
@@ -120,6 +154,11 @@
     margin-top: 15px;
   }
 
+  .offer-actions img {
+    width: 150px;
+    height: 105px;
+    margin-bottom: -25px;
+  }
 
   .offer-card {
     background: white;
@@ -144,38 +183,12 @@
     background: #0B59D5;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 15px;
     font-size: 14px;
     border-radius: 25px;
     cursor: pointer;
     margin-top: 10px;
-    line-height: 24px;
-    font-weight: 600;
-  }
-
-  /* Bottom Navigation */
-  .bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    border-top: 2px solid #ddd;
-  }
-
-  .bottom-nav i {
-    color: black;
-    width: 20px;
-  }
-
-  .bottom-nav div {
-    text-align: center;
-  }
-
-  .bottom-nav p {
-    font-size: 12px;
+    height: 45px;
+    text-decoration: none;
   }
 }

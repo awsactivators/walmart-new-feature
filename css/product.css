@@ -1,5 +1,5 @@
-/* Apply styles only for mobile devices (max-width: 600px) */
-@media (max-width: 600px) {
+/* Apply styles only for mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
   
   /* General styles */
   * {
@@ -25,18 +25,28 @@
 
   /* Header */
   header {
-    background-color: #0B59D5;
     color: white;
     padding: 10px;
-    padding-top: 20px;
   }
 
   .top-nav {
+    background-color: #0B59D5;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
+    padding: 10px 20px 0px 20px;
   }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0B59D5;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+
 
   .cart {
     position: relative;
@@ -92,8 +102,7 @@
   }
 
   main {
-    flex-grow: 1;
-    overflow-y: auto;
+    margin-top: 140px;
   }
 
   /* Points Banner */
@@ -228,29 +237,4 @@
     
   }
 
-  /* Bottom Navigation */
-  .bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    border-top: 2px solid #ddd;
-  }
-
-  .bottom-nav i {
-    color: black;
-    width: 20px;
-  }
-
-  .bottom-nav div {
-    text-align: center;
-  }
-
-  .bottom-nav p {
-    font-size: 12px;
-  }
 }

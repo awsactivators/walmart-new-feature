@@ -42,14 +42,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signup | Walmart</title>
-  <link rel="stylesheet" href="../css/index.css" />
-  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/login.css" />
 </head>
 <body>
   <div class="login-container">
     <div class="login-card">
       <div class="login-header">
-        <img src="../assets/logo.png" alt="Walmart Logo" class="logo" />
+        <img src="./assets/logo.png" alt="Walmart Logo" class="logo" />
         <h2>Signup</h2>
       </div>
 

@@ -84,13 +84,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/payment.css" />
+  <link rel="stylesheet" href="./css/payment.css" />
   <title>Payment</title>
 </head>
 <body>
   <header>
     <div class="payment-header">
-      <a href=""><img src="../assets/Back.png" alt="Back arrow"></a>
+      <a href=""><img src="./assets/Back.png" alt="Back arrow"></a>
       <h1>Payment</h1>
     </div>
     <div class="location-bar">
@@ -202,7 +202,7 @@
       userPoints: <?php echo $user_points; ?>
     };
   </script>
-  <script src="../js/payment.js"></script>
+  <script src="./js/payment.js"></script>
 
 
 </body>

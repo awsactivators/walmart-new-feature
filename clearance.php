@@ -116,8 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/clearance.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/clearance.css">
 </head>
 <body>
 
@@ -129,10 +129,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
           </div>
 
             <div class="store-title">
-              <h2>Walmart</h2>
+            <img src="./assets/walmart-logo.png" alt="Walmart Logo">
+              <!-- <h2>Walmart</h2> -->
             </div>
             <div class="cart">
-              <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
+              <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">0</span></a>
             </div>
           </section>
     
@@ -152,6 +153,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
 
     <!-- Clearance Store Section -->
     <main>
+        <section>
+            <div class="clearance-banner">
+                <h1>Clearance Store</h1>
+                <p class="learn-points">Learn about Points</p>
+            </div>
+        </section>
         <section class="category-toggle">
             <div class="toggle-container">
                 <div class="toggle-background"></div>
@@ -205,6 +212,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
         </div>
     </footer>
 
-    <script src="../js/load-clearance-products.js"></script>
+    <script src="./js/load-clearance-products.js"></script>
 </body>
 </html>

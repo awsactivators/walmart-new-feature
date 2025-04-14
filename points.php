@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/points.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/points.css">
 
   <title>My Points</title>
 </head>
@@ -36,7 +37,7 @@
   <header>
     <nav>
       <section class="top-nav">
-        <a href=""><img src="../assets/Back.png" alt="Back arrow"></a>
+        <a href=""><img src="./assets/Back.png" alt="Back arrow"></a>
         <h1>My Points</h1>
       </section>
       <section class="location-bar">
@@ -67,15 +68,37 @@
       </div>
     </section>
 
+    <!-- How it works -->
+     <section class="how-it-works">
+      <h2>How it works</h2>
+      <div class="how-it-works-grid">
+        <div>
+          <img src="./assets/add-to-cart.png" alt="Add to Cart">
+          <p>Buy grocery from clearance</p>
+        </div>
+
+        <div>
+          <img src="./assets/order-complete.png" alt="Order Complete">
+          <p>Checkout your order</p>
+        </div>
+
+        <div>
+          <img src="./assets/Cashback.png" alt="Cashback">
+          <span>Hooray!!</span>
+          <p>Earn Points</p>
+        </div>
+      </div>
+     </section>
+
     <!-- Offers Section -->
     <section class="offers">
-      <h3>Offers</h3>
+      <h3>Earn Points</h3>
       <div class="offer-card">
         <p class="offer-title">Free Delivery</p>
         <p class="offer-detail">Thank you for downloading the Walmart App!</p>
         <div class="offer-actions">
-          <button class="blue-btn">Order Now</button>
-          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <a href="./clearance.php" class="blue-btn">Order Now</a>
+          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
         </div>
         
       </div>
@@ -83,16 +106,16 @@
         <p class="offer-title">Earn 2x Points</p>
         <p class="offer-detail">Purchase 5 items to earn 2X Points</p>
         <div class="offer-actions">
-          <button class="blue-btn">Order Now</button>
-          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <a href="./clearance.php" class="blue-btn">Order Now</a>
+          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
       <div class="offer-card">
         <p class="offer-title">Earn 500 Points</p>
         <p class="offer-detail">500 Bonus Points on your first order</p>
         <div class="offer-actions">
-          <button class="blue-btn">Order Now</button>
-          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <a href="./clearance.php" class="blue-btn">Order Now</a>
+          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>
@@ -104,16 +127,17 @@
         <p class="offer-title">Purchase Clearance Grocery</p>
         <p class="offer-detail">Earn points with every clearance grocery purchase</p>
         <div class="offer-actions">
-          <button class="blue-btn">Order Now</button>
-          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <a href="./clearance.php" class="blue-btn">Order Now</a>
+          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
+      
       <div class="offer-card">
         <p class="offer-title">Refer a Friend</p>
         <p class="offer-detail">You get points on every successful referral</p>
         <div class="offer-actions">
-          <button class="blue-btn">Order Now</button>
-          <img src="../assets/gift-box.png" alt="Gift Box" id="gift-box">
+          <a href="./clearance.php" class="blue-btn">Order Now</a>
+          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>

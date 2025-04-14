@@ -22,21 +22,23 @@ document.addEventListener("DOMContentLoaded", () => {
                   card.dataset.points = product.points || 0;
 
                   card.innerHTML = `
-                       ${type === "grocery" ? `
-                        <div class="points-tag">
-                            <i class="fa-solid fa-circle"></i> ${product.points}
-                        </div>` : ""}
-                      <img src="${product.image}" alt="${product.name}">
-                      <p class="product-name">
-                          <a href="../php/product-detail.php?id=${product.id}&type=${type}">${product.name}</a>
-                      </p>
-                      <div class="price-container">
-                          <div>
-                              <p class="price">$${product.price.toFixed(2)}</p>
-                              <p class="price-per-unit">${product.price_per_unit || product.weight || 'N/A'}</p>
-                          </div>
-                          <div class="cart-controls"></div>
-                      </div>
+                    ${type === "grocery" ? `
+                    <div class="points-tag">
+                        <i class="fa-solid fa-circle"></i> ${product.points}
+                    </div>` : ""}
+                    <a href="../product-detail.php?id=${product.id}&type=${type}">
+                        <img src="${product.image}" alt="${product.name}">
+                        <p class="product-name">
+                            ${product.name}
+                        </p>
+                    </a>
+                    <div class="price-container">
+                        <div>
+                            <p class="price">$${product.price.toFixed(2)}</p>
+                            <p class="price-per-unit">${product.price_per_unit || product.weight || 'N/A'}</p>
+                        </div>
+                        <div class="cart-controls"></div>
+                    </div>
                   `;
                   
                   productGrid.appendChild(card);
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fetchCart() {
-      fetch("../php/clearance.php", {
+      fetch("../clearance.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({ action: "fetch" })
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateCart(productId, action, productData = {}) {
-      fetch("../php/clearance.php", {
+      fetch("../clearance.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({ product_id: productId, action, ...productData })
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fetchCartCount() {
-      fetch("../php/clearance.php?getCartCount=true")
+      fetch("../clearance.php?getCartCount=true")
           .then(response => response.json())
           .then(data => updateCartCount(data.cart_count))
           .catch(error => console.error("Error fetching cart count:", error));

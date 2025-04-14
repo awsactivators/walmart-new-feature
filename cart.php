@@ -96,14 +96,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/cart.css">
+  <link rel="stylesheet" href="./css/cart.css">
 
   <title>Cart</title>
 </head>
 <body>
   <header>
     <div class="cart-header">
-      <a href=""><img src="../assets/Back.png" alt="Back arrow"></a>
+      <a href=""><img src="./assets/Back.png" alt="Back arrow"></a>
       <h1>Cart</h1>
     </div>
     <div class="location-bar">
@@ -172,7 +172,7 @@
       <div class="products">
         <div class="product">
           <div class="points-badge"><span class="dot"></span> 250</div>
-          <img src="../assets/strawberry.jpg" alt="Strawberry">
+          <img src="./assets/strawberry.jpg" alt="Strawberry">
           <div class="product-name">
             <p>Strawberry</p>
           </div>
@@ -188,7 +188,7 @@
         </div>
         <div class="product">
           <div class="points-badge"><span class="dot"></span> 250</div>
-          <img src="../assets/pomegranate.jpg" alt="Pomegranate">
+          <img src="./assets/pomegranate.jpg" alt="Pomegranate">
           <div class="product-name">
             <p>Pomegranate</p>
           </div>
@@ -269,10 +269,10 @@
         } else {
           document.getElementById('qty-' + cartType + '-' + productId).textContent = data.quantity;
         }
-        // ✅ Update cart count
+        // Update cart count
         document.querySelector('.cart-status p').textContent = `You have ${data.item_count} items in your cart`;
 
-        // ✅ Update subtotal/tax/total
+        // Update subtotal/tax/total
         document.querySelector('.summary .subtotal-tax:nth-of-type(1) span:last-child').textContent = `$${data.subtotal}`;
         document.querySelector('.summary .subtotal-tax:nth-of-type(2) span:last-child').textContent = `$${data.tax}`;
         document.querySelector('.summary .total strong:last-child').textContent = `$${data.total}`;
@@ -303,7 +303,7 @@
     fetch('cart.php', {
       method: 'POST',
       headers: {
-        'X-Requested-With': 'XMLHttpRequest' // 🔥 Key line
+        'X-Requested-With': 'XMLHttpRequest' 
       },
       body: formData
     })

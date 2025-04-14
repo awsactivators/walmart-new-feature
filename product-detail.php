@@ -26,7 +26,7 @@
   // Get product info
   $type = $_GET['type'] ?? 'grocery';
   $id = $_GET['id'] ?? null;
-  $json_file = $type === 'grocery' ? '../data/products.json' : '../data/others.json';
+  $json_file = $type === 'grocery' ? './data/products.json' : './data/others.json';
   $products = json_decode(file_get_contents($json_file), true);
 
   $product = null;
@@ -48,7 +48,8 @@ if (!$product) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Page</title>
-  <link rel="stylesheet" href="../css/product.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/product.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -58,7 +59,10 @@ if (!$product) {
         <div class="user-greeting">
           <h1>Hi, <span><?php echo htmlspecialchars($first_name); ?></span></h1>
         </div>
-        <div class="store-title"><h2>Walmart</h2></div>
+        <div class="store-title">
+          <img src="./assets/walmart-logo.png" alt="Walmart Logo">
+          <!-- <h2>Walmart</h2> -->
+        </div>
         <div class="cart">
           <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
         </div>
@@ -140,6 +144,6 @@ if (!$product) {
     <div><a href="./profile.php"><i class="fa-solid fa-user"></i></a><p>Profile</p></div>
   </footer>
 
-  <script src="../js/product.js"></script>
+  <script src="./js/product.js"></script>
 </body>
 </html>

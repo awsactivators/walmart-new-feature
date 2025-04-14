@@ -1,9 +1,10 @@
 <?php
   $connect = mysqli_connect(
-    'localhost',
+    '127.0.0.1',
     'root',
     '',
-    'walmart_app'
+    'walmart_app',
+    3309
   );
 
   if (!$connect) {
