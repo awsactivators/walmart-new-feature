@@ -98,7 +98,7 @@
         <p class="offer-detail">Thank you for downloading the Walmart App!</p>
         <div class="offer-actions">
           <a href="./clearance.php" class="blue-btn">Order Now</a>
-          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
+          <img src="./assets/Gift.png" alt="Gift Box" id="gift-box">
         </div>
         
       </div>
@@ -107,7 +107,7 @@
         <p class="offer-detail">Purchase 5 items to earn 2X Points</p>
         <div class="offer-actions">
           <a href="./clearance.php" class="blue-btn">Order Now</a>
-          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
+          <img src="./assets/Gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
       <div class="offer-card">
@@ -115,7 +115,7 @@
         <p class="offer-detail">500 Bonus Points on your first order</p>
         <div class="offer-actions">
           <a href="./clearance.php" class="blue-btn">Order Now</a>
-          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
+          <img src="./assets/Gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>
@@ -128,7 +128,7 @@
         <p class="offer-detail">Earn points with every clearance grocery purchase</p>
         <div class="offer-actions">
           <a href="./clearance.php" class="blue-btn">Order Now</a>
-          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
+          <img src="./assets/Gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
       
@@ -137,7 +137,7 @@
         <p class="offer-detail">You get points on every successful referral</p>
         <div class="offer-actions">
           <a href="./clearance.php" class="blue-btn">Order Now</a>
-          <img src="./assets/gift.png" alt="Gift Box" id="gift-box">
+          <img src="./assets/Gift.png" alt="Gift Box" id="gift-box">
         </div>
       </div>
     </section>

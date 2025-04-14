@@ -10,8 +10,6 @@
       exit();
   }
 
-
-
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $user_id = $_SESSION['user_id'];
       $first = $_POST["first-name"];
