@@ -105,6 +105,11 @@
     margin-top: 140px;
   }
 
+  .product-detail-page {
+    margin-bottom: 40px;
+  }
+
+
   /* Points Banner */
   .points-banner {
     background: #eaf2ff;
@@ -219,6 +224,12 @@
     cursor: pointer;
     display: block;
   }
+
+  .add-to-cart-btn.added {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
 
   .back-to-grocery {
     text-decoration: none;

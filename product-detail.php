@@ -24,7 +24,7 @@
   $full_address = "$street_address, $province, $postal_code";
 
   // Get product info
-  $type = $_GET['type'] ?? 'grocery';
+  $type = strtolower($_GET['type'] ?? 'grocery');
   $id = $_GET['id'] ?? null;
   $json_file = $type === 'grocery' ? './data/products.json' : './data/others.json';
   $products = json_decode(file_get_contents($json_file), true);
@@ -61,11 +61,26 @@ if (!$product) {
         </div>
         <div class="store-title">
           <img src="./assets/walmart-logo.png" alt="Walmart Logo">
-          <!-- <h2>Walmart</h2> -->
         </div>
+
+        <?php
+          $nav_cart_count = 0;
+          foreach (['cart', 'clearance_cart'] as $cartKey) {
+            if (!empty($_SESSION[$cartKey])) {
+              foreach ($_SESSION[$cartKey] as $item) {
+                $nav_cart_count += $item['quantity'] ?? 1;
+              }
+            }
+          }
+        ?>
+
         <div class="cart">
-          <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
+          <a href="./cart.php">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count"><?php echo $nav_cart_count; ?></span>
+          </a>
         </div>
+
       </section>
 
       <section class="search-bar">
@@ -73,6 +88,7 @@ if (!$product) {
           <input type="text" placeholder="🔍 Search everything at Walmart" />
           <i class="fa-solid fa-barcode"></i>
         </div>
+
         <div class="location">
           <p>How do you want your items? | <span class="postal-code"><?php echo htmlspecialchars($postal_code); ?></span></p>
           <i class="fa-solid fa-caret-down"></i>
@@ -81,7 +97,7 @@ if (!$product) {
     </nav>
   </header>
 
-  <main>
+  <main class="product-detail-page">
     <section class="points-banner">
       <p><strong>"Buy now & claim <?php echo $product['points'] ?? '0'; ?> points instantly!"</strong></p>
     </section>
@@ -105,34 +121,50 @@ if (!$product) {
       </div>
     </section>
 
+    <?php
+      echo "<!-- Type: $type -->";
+      echo "<!-- Ingredients: " . print_r($product['ingredients'] ?? 'none', true) . " -->";
+      echo "<!-- Recipe: " . ($product['recipe'] ?? 'none') . " -->";
+    ?>
+
+
     <?php if ($type === 'grocery'): ?>
-    <section class="toggle-buttons">
-      <button class="toggle-btn active" id="ingredients-btn">Ingredients</button>
-      <button class="toggle-btn" id="recipes-btn">Recipes</button>
-    </section>
+      <section class="toggle-buttons">
+        <button class="toggle-btn active" id="ingredients-btn">Ingredients</button>
+        <button class="toggle-btn" id="recipes-btn">Recipes</button>
+      </section>
 
-    <section class="product-details">
-      <div id="ingredients" class="details-content active">
-        <h3>Ingredients</h3>
-        <ul>
-          <?php foreach ($product['ingredients'] as $ingredient): ?>
-            <li><?php echo htmlspecialchars($ingredient); ?></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+      <section class="product-details">
+        <div id="ingredients" class="details-content active">
+          <h3>Ingredients</h3>
+          <ul>
+            <?php foreach ($product['ingredients'] as $ingredient): ?>
+              <li><?php echo htmlspecialchars($ingredient); ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
 
-      <div id="recipes" class="details-content">
-        <h3>Recipes</h3>
-        <ul>
-          <?php foreach ($product['recipes'] as $recipe): ?>
-            <li><?php echo htmlspecialchars($recipe); ?></li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-    </section>
+        
+        <div id="recipes" class="details-content">
+          <h3>Recipe</h3>
+          <p><?php echo htmlspecialchars($product['recipe'] ?? "No recipe provided."); ?></p>
+        </div>
+
+      </section>
     <?php endif; ?>
 
-    <button class="add-to-cart-btn">Add to Cart</button>
+    <button 
+      class="add-to-cart-btn" 
+      data-id="<?php echo strtolower(str_replace(' ', '_', $product['name'])); ?>"
+      data-name="<?php echo htmlspecialchars($product['name']); ?>"
+      data-image="<?php echo $product['image']; ?>"
+      data-price="<?php echo $product['price']; ?>"
+      data-price-per-unit="<?php echo $product['price_per_unit']; ?>"
+      data-points="<?php echo $product['points']; ?>"
+    >
+      Add to Cart
+    </button>
+
     <a href="./clearance.php" class="back-to-grocery">Back to Clearance</a>
   </main>
 
@@ -145,5 +177,52 @@ if (!$product) {
   </footer>
 
   <script src="./js/product.js"></script>
+  <script defer>
+  document.querySelector('.add-to-cart-btn').addEventListener('click', function () {
+    const btn = this;
+
+    const product_id = btn.dataset.id;
+    const name = btn.dataset.name;
+    const image = btn.dataset.image;
+    const price = btn.dataset.price;
+    const pricePerUnit = btn.dataset.pricePerUnit || '';
+    const points = btn.dataset.points || 0;
+
+    const formData = new FormData();
+    formData.append('product_id', product_id);
+    formData.append('name', name);
+    formData.append('image', image);
+    formData.append('price', price);
+    formData.append('price_per_unit', pricePerUnit);
+    formData.append('points', points);
+
+    fetch('cart.php', {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        btn.textContent = "Added to Cart";
+        btn.disabled = true;
+        btn.classList.add('added');
+
+        // Increment cart count visually
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+          cartCount.textContent = parseInt(cartCount.textContent || "0") + 1;
+        }
+      }
+    })
+    .catch(err => {
+      console.error("Add to cart error:", err);
+      alert("Failed to add item. Please try again.");
+    });
+  });
+</script>
+
 </body>
 </html>
