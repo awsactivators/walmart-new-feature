@@ -126,7 +126,7 @@
           <img src="./assets/walmart-logo.png" alt="Walmart Logo">
         </div>
         <div class="cart">
-          <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">5</span></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count">0</span></a>
         </div>
       </section>
 
@@ -147,7 +147,9 @@
   <main>
     <section class="pickup-delivery">
       <p>Pickup and delivery</p>
-      <button class="see-times">See times</button>
+      <a href="./comeback.php">
+        <button class="see-times">See times</button>
+      </a>
     </section>
   
     <!-- Grocery Clearance Ad Card -->
@@ -158,7 +160,9 @@
           <h4>Grocery Clearance</h4>
           <p>Get Points when you purchase from Grocery Clearance</p>
         </div>
-        <button class="shop-now">Shop Now</button>
+        <a href="./clearance.php">
+          <button class="shop-now">Shop Now</button>
+        </a>
       </div>
     </section>
   

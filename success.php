@@ -1,5 +1,6 @@
 <?php
 include('auth.php'); 
+
 $earned = $_GET['earned'] ?? 0;
 
 if (isset($_GET['clear']) && $_GET['clear'] == 1) {
@@ -21,7 +22,7 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
 </head>
 <body>
   <main class="success-page">
-    <img src="./assets/Foodbasket.png" alt="Success Basket" class="success-img" />
+    <img src="./assets/complete-img.png" alt="Success Basket" class="success-img" />
 
     <h2>Order placed successfully!</h2>
 

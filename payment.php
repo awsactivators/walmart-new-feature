@@ -133,10 +133,17 @@
 
     <section class="payment-method">
       <h4>Payment Method</h4>
-      <label><input type="radio" name="payment" /> Credit / Debit Card</label>
-      <label><input type="radio" name="payment" /> Paypal</label>
-      <label><input type="radio" name="payment" /> Pay with Apple Pay</label>
+      <label>
+        <input type="radio" name="payment" value="card" checked /> Credit / Debit Card
+      </label>
+      <label>
+        <input type="radio" name="payment" value="paypal" /> Paypal
+      </label>
+      <label>
+        <input type="radio" name="payment" value="apple_pay" /> Pay with Apple Pay
+      </label>
     </section>
+
 
     <section class="redeem-points">
       <label>

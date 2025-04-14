@@ -60,11 +60,11 @@
     <section class="membership">
       <div class="membership-row">
         <p>Your Membership ID</p>
-        <a href="#">View</a>
+        <a href="./comeback.php">View</a>
       </div>
       <div class="membership-row">
         <p>Points History</p>
-        <a href="#">View</a>
+        <a href="./comeback.php">View</a>
       </div>
     </section>
 

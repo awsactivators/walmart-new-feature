@@ -207,6 +207,10 @@
     margin-bottom: 6px;
   }
 
+  .category-item .fa-cart-shopping {
+    color: black;
+  }
+
   .category-item.selected {
     background: #eaf2ff;
     color: #0B59D5;

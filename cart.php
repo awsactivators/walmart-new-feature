@@ -224,7 +224,11 @@
         <strong>Total</strong>
         <strong><?php echo "$" . number_format($total, 2); ?></strong>
       </div>
-      <a href="payment.php"><button class="pay-btn">Proceed to Payment</button></a>
+      <a href="<?php echo $item_count > 0 ? 'payment.php' : '#'; ?>">
+        <button class="pay-btn" <?php echo $item_count == 0 ? 'disabled' : ''; ?>>
+          Proceed to Payment
+        </button>
+      </a>
     </section>
   </main>
 

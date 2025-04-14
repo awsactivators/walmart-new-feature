@@ -47,60 +47,10 @@ $first_name = $first_name ?: "User";
     <i class="fi fi-br-check"></i>
   </header>
 
-  <main class="profile-main">
-    <section class="profile-section card points-balance">
-      <h2>Points</h2>
-      <span><?php echo $user_points; ?></span>
-    </section>
-    <section class="profile-section card">
-      <a href="#">
-        <div class="icon-title">
-          <i class="fa-regular fa-calendar"></i>
-          <div class="wallet-info">
-            <h3>Purchase History</h3>
-            <p>Track your order status, start a return, or view purchases history and receipts</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-right"></i>
-      </a>
-    </section>
-
-    <section class="profile-section card">
-      <a href="#">
-        <div class="icon-title">
-          <i class="fa-solid fa-wallet"></i>
-          <div class="wallet-info">
-            <h3>Wallet</h3>
-            <p>Manage your payment methods and learn about reward card, payment tools, and more.</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-right"></i>
-      </a>
-    </section>
-
-    <section class="profile-section card">
-      <h4>Manage Account</h4>
-      <a href="#">
-        <div class="icon-title">
-          <i class="fa-regular fa-user"></i>
-          <p>Personal Info</p>
-        </div>
-        <i class="fa-solid fa-chevron-right"></i>
-      </a>
-      <a href="#">
-        <div class="icon-title">
-          <i class="fa-solid fa-location-dot"></i>
-          <p>Addresses</p>
-        </div>
-        <i class="fa-solid fa-chevron-right"></i>
-      </a>
-    </section>
-
-    <section class="profile-section  sign-out">
-      <a href="logout.php">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
-      </a>
-    </section>
+  <main class="comeback-main">
+    <h1>We're Currently Under Maintenance</h1>
+    <p>Our site is temporarily down while we make some important updates.</p>
+    <p>Please check back shortly. We appreciate your patience!</p>
   </main>
 
   <footer class="bottom-nav">
