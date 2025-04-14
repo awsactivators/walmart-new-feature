@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['getCartCount'])) {
         <section>
             <div class="clearance-banner">
                 <h1>Clearance Store</h1>
-                <p class="learn-points">Learn about Points</p>
+                <a href="./points.php" class="learn-points">Learn about Points</a>
             </div>
         </section>
         <section class="category-toggle">

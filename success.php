@@ -1,7 +1,8 @@
 <?php
 include('auth.php'); 
 
-$earned = $_GET['earned'] ?? 0;
+$earned = $_SESSION['earned_points'] ?? 0;
+// $earned = $_GET['earned'] ?? 0;
 
 if (isset($_GET['clear']) && $_GET['clear'] == 1) {
   unset($_SESSION['cart']);
@@ -33,7 +34,7 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
 
     <div class="success-actions">
       <div class="home-btn"><a href="success.php?clear=1">Home</a></div>
-      <a href="./points.html" class="view-points-link">View Points</a>
+      <a href="./points.php" class="view-points-link">View Points</a>
     </div>
   </main>
 </body>
