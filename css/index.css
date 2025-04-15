@@ -239,6 +239,7 @@
   .product img {
     width: 100%;
     max-width: 120px;
+    height: 100px;
   }
 
   .product-name {

@@ -189,39 +189,67 @@
     </section>
   
     <!-- Groceries -->
+    <?php
+      // Load grocery data
+      $grocery_data = json_decode(file_get_contents('./data/products.json'), true);
+
+      // Get all cart item names (case-insensitive)
+      $cart_names = [];
+      foreach (['cart', 'clearance_cart'] as $cart_type) {
+        if (!empty($_SESSION[$cart_type])) {
+          foreach ($_SESSION[$cart_type] as $item) {
+            $cart_names[] = strtolower($item['name'] ?? $item['product_name']);
+          }
+        }
+      }
+
+      // Remove items already in the cart
+      $filtered_groceries = array_filter($grocery_data, function ($item) use ($cart_names) {
+        return !in_array(strtolower($item['name']), $cart_names);
+      });
+
+      // Pick exactly 2 random grocery items
+      $random_items = [];
+      if (count($filtered_groceries) >= 2) {
+        $keys = array_rand($filtered_groceries, 2);
+        foreach ((array)$keys as $key) {
+          $random_items[] = $filtered_groceries[$key];
+        }
+      }
+    ?>
+
     <section class="groceries">
-      <h3>Groceries <span class="item-count">(12.3k)</span></h3>
+      <h3>Groceries <span class="item-count">(<?php echo count($grocery_data); ?>)</span></h3>
       <div class="products">
-        <div class="product">
-          <img src="./assets/orange.jpg" alt="Oranges">
-          <div class="product-name">
-            <p class=""><a href="product-detail.php" style="text-decoration: none;">Oranges</a></p>
-          </div>
-          <div class="price-container">
-            <div class="price-col">
-              <p class="price">$2.39</p>
-              <p class="price-per-unit">11.9¢/oz</p>
+        <?php foreach ($random_items as $item): ?>
+          <div class="product">
+            <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+            <div class="product-name">
+              <p>
+                <a href="product-detail.php?id=<?php echo $item['id']; ?>&type=grocery" style="text-decoration: none;">
+                  <?php echo htmlspecialchars($item['name']); ?>
+                </a>
+              </p>
             </div>
-            <div  id="cart-btn-1">
-              <button class="add-to-cart" onclick="updateCart(1, 'increase')">+</button>
+            <div class="price-container">
+              <div class="price-col">
+                <p class="price">$<?php echo number_format($item['price'], 2); ?></p>
+                <p class="price-per-unit"><?php echo htmlspecialchars($item['price_per_unit']); ?></p>
+              </div>
+              <div id="cart-btn-<?php echo $item['id']; ?>">
+                <button 
+                  class="add-to-cart" 
+                  onclick="updateCart(<?php echo $item['id']; ?>, 'increase')"
+                  data-name="<?php echo htmlspecialchars($item['name']); ?>"
+                  data-image="<?php echo $item['image']; ?>"
+                  data-price="<?php echo $item['price']; ?>"
+                  data-points="<?php echo $item['points']; ?>"
+                >+</button>
+              </div>
             </div>
+
           </div>
-        </div>
-        <div class="product">
-          <img src="./assets/kiwi.jpg" alt="Kiwi">
-          <div class="product-name">
-            <p>Kiwi</p>
-          </div>
-          <div class="price-container">
-            <div class="price-col">
-              <p class="price">$3.19</p>
-              <p class="price-per-unit">11.9¢/oz</p>
-            </div>
-            <div  id="cart-btn-2">
-              <button class="add-to-cart" onclick="updateCart(2, 'increase')">+</button>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </section>
   </main>
@@ -249,114 +277,7 @@
       <p>Profile</p>
     </div>
   </footer>
+
+  <script src="./js/index.js"></script>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetchCartData();
-    });
-
-    function fetchCartData() {
-        fetch('index.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'fetch_cart=1'
-        })
-        .then(response => response.json())
-        .then(data => {
-            let cart = data.cart;
-            let cartCount = data.cart_count;
-            Object.keys(cart).forEach(productId => {
-              const quantity = cart[productId].quantity || 0;
-              updateCartButton(productId, cart[productId].quantity || 0);
-            });
-            updateCartCount(cartCount);
-        })
-        .catch(error => console.error('Error fetching cart:', error));
-    }
-
-    function updateCart(productId, action) {
-    let productElement = document.querySelector(`#cart-btn-${productId}`);
-    if (!productElement) {
-        console.error(`Product container not found for product ID: ${productId}`);
-        return;
-    }
-
-    let productContainer = productElement.closest('.product');
-    if (!productContainer) {
-        console.error(`Could not find product container for product ID: ${productId}`);
-        return;
-    }
-
-    // Try alternative selectors if elements are missing
-    let productNameElement = productContainer.querySelector('.product-name a') || 
-                             productContainer.querySelector('.product-name p');
-    let productImageElement = productContainer.querySelector('img');
-    let productPriceElement = productContainer.querySelector('.price');
-    let productPointsElement = productContainer.querySelector('.points-tag');
-
-    if (!productNameElement || !productImageElement || !productPriceElement) {
-        console.error(`Missing product details for product ID: ${productId}`);
-        console.log({
-            productNameElement,
-            productImageElement,
-            productPriceElement,
-            productPointsElement
-        });
-        return;
-    }
-
-    let productName = productNameElement.textContent.trim();
-    let productImage = productImageElement.getAttribute('src');
-    let productPrice = productPriceElement.textContent.replace('$', '').trim();
-    let productPoints = productPointsElement ? productPointsElement.textContent.trim() : "0";
-
-    let formData = new URLSearchParams();
-    formData.append("product_id", productId);
-    formData.append("action", action);
-    formData.append("product_name", productName);
-    formData.append("product_image", productImage);
-    formData.append("product_price", productPrice);
-    formData.append("product_points", productPoints);
-
-    fetch('index.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formData.toString()
-    })
-    .then(response => response.text()) // Fetch as text first for debugging
-    .then(text => {
-        console.log("Raw Response:", text);
-        let data = JSON.parse(text);
-        updateCartButton(productId, data.cart[productId]?.quantity || 0);
-        updateCartCount(data.cart_count);
-    })
-    .catch(error => console.error('JSON Parse Error:', error));
-}
-
-
-
-    function updateCartButton(productId, quantity) {
-        let buttonContainer = document.getElementById(`cart-btn-${productId}`);
-        if (!buttonContainer) {
-            console.error(`Button container not found for product ${productId}`);
-            return;
-        }
-        if (quantity > 0) {
-            buttonContainer.innerHTML = `
-                <button class="add-to-cart" onclick="updateCart(${productId}, 'decrease')">-</button>
-                <span>${quantity}</span>
-                <button class="add-to-cart"  onclick="updateCart(${productId}, 'increase')">+</button>
-            `;
-        } else {
-            buttonContainer.innerHTML = `<button class="add-to-cart" onclick="updateCart(${productId}, 'increase')">+</button>`;
-        }
-    }
-
-    function updateCartCount(count) {
-        let cartCountElement = document.querySelector(".cart-count");
-        if (cartCountElement) {
-            cartCountElement.textContent = count;
-        }
-    }
-  </script>
 </html>
