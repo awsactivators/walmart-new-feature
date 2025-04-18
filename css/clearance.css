@@ -110,6 +110,7 @@
     .product-card img {
         width: 100%;
         margin: 10px auto;
+        height: 200px;
     }
 
     /* Product Name */
