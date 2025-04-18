@@ -243,7 +243,6 @@
                   data-name="<?php echo htmlspecialchars($item['name']); ?>"
                   data-image="<?php echo $item['image']; ?>"
                   data-price="<?php echo $item['price']; ?>"
-                  data-points="<?php echo $item['points']; ?>"
                 >+</button>
               </div>
             </div>
