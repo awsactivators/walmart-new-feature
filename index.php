@@ -257,7 +257,7 @@
 
   <footer class="bottom-nav">
     <div>
-      <a href="#"><i class="fa-solid fa-house"></i></a>
+      <a href="#" class="active"><i class="fa-solid fa-house"></i></a>
       <p>Home</p>
     </div>
     <div>

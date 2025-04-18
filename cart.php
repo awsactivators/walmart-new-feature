@@ -97,6 +97,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/cart.css">
+  <link rel="stylesheet" href="./css/index.css">
 
   <title>Cart</title>
 </head>
@@ -261,7 +262,7 @@
       <p>My Points</p>
     </div>
     <div>
-      <a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="./cart.php" class="active"><i class="fa-solid fa-cart-shopping"></i></a>
       <p>Cart</p>
     </div>
     <div>

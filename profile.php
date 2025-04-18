@@ -121,7 +121,7 @@ $first_name = $first_name ?: "User";
       <p>Cart</p>
     </div>
     <div>
-      <a href="./profile.php"><i class="fa-solid fa-user"></i></a>
+      <a href="./profile.php" class="active"><i class="fa-solid fa-user"></i></a>
       <p>Profile</p>
     </div>
   </footer>

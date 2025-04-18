@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartCountElement = document.querySelector('.cart-count');
 
   function loadProducts(type) {
-      const file = type === "grocery" ? '../data/products.json' : '../data/others.json';
+      const file = type === "grocery" ? 'data/products.json' : 'data/others.json';
 
       fetch(file)
           .then(res => res.json())
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <i class="fa-solid fa-circle"></i> ${product.points}
                     </div>` : ""}
                     <a href="../product-detail.php?id=${product.id}&type=${type}">
-                        <img src="${product.image}" alt="${product.name}">
+                        <img src="/walmart-new-feature/walmart-new-feature/${product.image}" alt="${product.name}">${product.image}
                         <p class="product-name">
                             ${product.name}
                         </p>
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fetchCart() {
-      fetch("../clearance.php", {
+      fetch("clearance.php", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({ action: "fetch" })

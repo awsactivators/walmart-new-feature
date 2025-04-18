@@ -318,5 +318,8 @@
   .bottom-nav p {
     font-size: 14px;
   }
+  .active i{
+    color: #0B59D5;
+  }
 
 }

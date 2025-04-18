@@ -153,7 +153,7 @@
       <p>Categories</p>
     </div>
     <div>
-      <a href="./index.php"><i class="fa-solid fa-piggy-bank"></i></a>
+      <a href="#" class="active"><i class="fa-solid fa-piggy-bank"></i></a>
       <p>My Points</p>
     </div>
     <div>

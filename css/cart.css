@@ -313,32 +313,4 @@
     color: #666;
   }
   
-
-
-  /* Bottom Navigation */
-  .bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    border-top: 2px solid #ddd;
-    height: 60px;
-  }
-
-  .bottom-nav i {
-    color: black;
-    width: 20px;
-  }
-
-  .bottom-nav div {
-    text-align: center;
-  }
-
-  .bottom-nav p {
-    font-size: 12px;
-  }
 }
