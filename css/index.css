@@ -308,16 +308,19 @@
   .bottom-nav i {
     color: black;
     font-size: 28px;
-    margin-bottom: 7px;
   }
 
   .bottom-nav div {
     text-align: center;
+    width: 68px;
+    height: 51px;
   }
 
   .bottom-nav p {
     font-size: 14px;
+    margin-top: 7px;
   }
+
   .active i{
     color: #0B59D5;
   }
