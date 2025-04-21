@@ -187,6 +187,18 @@
         <i class="fa-solid fa-percent"></i> <a href="clearance.php" style="text-decoration: none;">Clearance</a>
       </div>
     </section>
+
+    <!-- Points Detail -->
+    <section class="points-banner">
+      <div class="points-new">
+        <h2>My Points</h2>
+        <span>NEW</span>
+      </div>
+      <div class="points-details-link">
+        <h2>Track your rewards and see how close you are to your next benefits</h2>
+        <a href="./points.php">My Points</a>
+      </div>
+    </section>
   
     <!-- Groceries -->
     <?php

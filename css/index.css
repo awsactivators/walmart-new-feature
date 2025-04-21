@@ -217,6 +217,50 @@
   }
 
 
+  .points-banner {
+    background: #0B59D5;
+    color: white;
+    padding: 10px;
+    /* text-align: center; */
+    font-size: 14px;
+    /* font-weight: bold; */
+    margin: 15px;
+    border-radius: 12px;
+  }
+
+  .points-new {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .points-details-link {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .points-details-link h2 {
+    font-weight: lighter;
+  }
+
+  .points-details-link a{
+    background-color: #ffff;
+    color: #0B59D5;
+    padding: 16px 12px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 18px;
+    width: 150px;
+    font-weight: bold;
+  }
+
+  .points-new span {
+    background-color: #FCB61A;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
 
   /* Groceries */
   .groceries {
