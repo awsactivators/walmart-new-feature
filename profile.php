@@ -48,10 +48,6 @@ $first_name = $first_name ?: "User";
   </header>
 
   <main class="profile-main">
-    <section class="profile-section card points-balance">
-      <h2>Points</h2>
-      <span><?php echo $user_points; ?></span>
-    </section>
     <section class="profile-section card">
       <a href="#">
         <div class="icon-title">
@@ -77,6 +73,20 @@ $first_name = $first_name ?: "User";
         <i class="fa-solid fa-chevron-right"></i>
       </a>
     </section>
+
+    <section class="profile-section card">
+      <a href="./points.php">
+        <div class="icon-title">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <div class="wallet-info">
+            <h3>My Points <span class="new-span">NEW</span></h3>
+            <p>Track your rewards and see how close you are to your next benefits</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+      </a>
+    </section>
+
 
     <section class="profile-section card">
       <h4>Manage Account</h4>

@@ -264,6 +264,14 @@
     border-radius: 5px;
   }
 
+  .new-span {
+    background-color: #FCB61A;
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+  }
+
 
   /* Groceries */
   .groceries {
