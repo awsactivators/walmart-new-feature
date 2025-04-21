@@ -237,22 +237,25 @@
   .points-details-link {
     display: flex;
     align-items: center;
-    gap: 35px;
+    justify-content: space-between;
   }
 
   .points-details-link h2 {
     font-weight: lighter;
+    font-size: 16px;
+    width: 250px;
   }
 
   .points-details-link a{
     background-color: #ffff;
     color: #0B59D5;
-    padding: 16px 12px;
+    padding: 16px 10px;
     text-decoration: none;
     border-radius: 25px;
     font-size: 18px;
-    width: 150px;
+    width: 100px;
     font-weight: bold;
+    text-align: center;
   }
 
   .points-new span {
